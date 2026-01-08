@@ -1,0 +1,27 @@
+{
+  "$schema": "https://cloud.uipath.com/draft/2024-12/entry-point",
+  "entryPoints": [
+    {
+      "filePath": "00. Begin and Fallback.xaml",
+      "uniqueId": "d88b35df-4270-4916-8281-1ed8c0136616",
+      "type": "process"
+    },
+    {
+      "filePath": "Initialisation\\0 Begin and Fallback.xaml",
+      "uniqueId": "670d73a5-690b-426e-a6c9-f0a903e1adb8",
+      "type": "process",
+      "input": {
+        "type": "object",
+        "properties": {
+          "TestRun": {
+            "type": "boolean"
+          },
+          "OrderNr": {
+            "type": "string"
+          }
+        },
+        "required": []
+      }
+    }
+  ]
+}

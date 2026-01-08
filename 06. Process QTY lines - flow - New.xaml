@@ -1,0 +1,442 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="_04__Process_QTY_lines" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="Testrun" Type="InArgument(x:Boolean)" />
+    <x:Property Name="OrderNr" Type="InArgument(x:String)" />
+    <x:Property Name="dt_QTY_Process_Info" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="Database" Type="InArgument(x:String)" />
+    <x:Property Name="QTY_LINES_FLOW_SUCCESS" Type="InOutArgument(x:Int32)" />
+  </x:Members>
+  <this:_04__Process_QTY_lines.dt_QTY_Process_Info>
+    <InArgument x:TypeArguments="sd:DataTable" />
+  </this:_04__Process_QTY_lines.dt_QTY_Process_Info>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>944,2356</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>_04__Process_ENG_lines_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Platform.SyncObjects</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>UiPath.UIAutomationNext.Models</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.Shared.Activities.Business</x:String>
+      <x:String>UiPath.Database</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Database.Activities</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
+      <x:String>UiPath.CV</x:String>
+      <x:String>UiPath.Shared.ObjectLibrary</x:String>
+      <x:String>UiPath.Vision.OCR</x:String>
+      <x:String>UiPath.OCR.Contracts</x:String>
+      <x:String>UiPath.CV.Activities</x:String>
+      <x:String>UiPath.OCR.Activities</x:String>
+      <x:String>UiPath.OCR.Contracts.Activities</x:String>
+      <x:String>UiPath.CV.Activities.Interfaces</x:String>
+      <x:String>UiPath.Core.Activities.Orchestrator</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>UiPath.Database</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Vision.Core</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Core</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Contracts</AssemblyReference>
+      <AssemblyReference>UiPath.CV.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="_04__Process_QTY_lines" sap:VirtualizedContainerService.HintSize="784.6666666666666,2123.3333333333335" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_QTY_Row_Information" />
+      <Variable x:TypeArguments="ui:DatabaseConnection" Name="DatabaseConnection" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Connect to DB - Invoke Workflow File (Connect to DB.xaml)" sap:VirtualizedContainerService.HintSize="708,210" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_13" UnSafe="False" WorkflowFileName="Connect to DB.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <OutArgument x:TypeArguments="ui:DatabaseConnection" x:Key="DatabaseConnection">[DatabaseConnection]</OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="708,1890.6666666666667" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <TryCatch.Try>
+        <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="706,1355.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_48">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_QTY_Process_Info]" DisplayName="For Each Row in dt_QTY_Process_Info" sap:VirtualizedContainerService.HintSize="672,1247.3333333333333" sap2010:WorkflowViewState.IdRef="ForEachRow_5">
+            <ui:ForEachRow.Body>
+              <ActivityAction x:TypeArguments="sd:DataRow">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="670,1063.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_129">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[dt_QTY_Row_Information]" DisplayName="Run query for Head PD data QTY info" ExistingDbConnection="[DatabaseConnection]" sap:VirtualizedContainerService.HintSize="636,120.66666666666667" sap2010:WorkflowViewState.IdRef="ExecuteQuery_5" Sql="[&quot;DECLARE @ProdHeaderDossierCode varchar(255)&#xD;&#xA;SET @ProdHeaderDossierCode = '&quot;+CurrentRow(&quot;ProdHeaderDossierCode&quot;).tostring+&quot;';&#xD;&#xA;&#xD;&#xA;  &#xD;&#xA;WITH ValidHeadPDCavitiesReference AS (&#xD;&#xA;&#xD;&#xA;SELECT&#xD;&#xA;&#x9;h.[ProdHeaderDossierCode],&#xD;&#xA;&#x9;[ProdStatusCode],&#xD;&#xA;&#x9;h.Description,&#xD;&#xA;&#x9;CASE &#xD;&#xA;&#x9;&#x9;WHEN (Select Min(ProdBOMProdHeaderDossierCode) From T_ProdHeadProdBOMLink PHPBL Where PHPBL.ProdHeaderDossierCode = h.ProdHeaderDossiercode) IS NULL AND TRY_CAST(LEFT(h.Description, 3) AS decimal(10,3))IS NOT NULL AND (SELECT COUNT(*) FROM [T_ProdBillOfMat] bm WHERE bm.ProdHeaderDossierCode = h.ProdHeaderDossierCode) &gt; 0&#xD;&#xA;&#x9;&#x9;THEN TRY_CAST(LEFT(h.Description, 3) AS decimal(10,3))&#xD;&#xA;&#x9;&#x9;WHEN (Select Min(ProdBOMProdHeaderDossierCode) From T_ProdHeadProdBOMLink PHPBL Where PHPBL.ProdHeaderDossierCode = h.ProdHeaderDossiercode) IS NULL AND TRY_CAST(LEFT(h.Description, 2) AS decimal(10,3))IS NOT NULL AND (SELECT COUNT(*) FROM [T_ProdBillOfMat] bm WHERE bm.ProdHeaderDossierCode = h.ProdHeaderDossierCode) &gt; 0&#xD;&#xA;&#x9;&#x9;THEN TRY_CAST(LEFT(h.Description, 2) AS decimal(10,3))&#xD;&#xA;&#x9;&#x9;WHEN (Select Min(ProdBOMProdHeaderDossierCode) From T_ProdHeadProdBOMLink PHPBL Where PHPBL.ProdHeaderDossierCode = h.ProdHeaderDossiercode) IS NULL AND TRY_CAST(LEFT(h.Description, 1) AS decimal(10,3))IS NOT NULL AND (SELECT COUNT(*) FROM [T_ProdBillOfMat] bm WHERE bm.ProdHeaderDossierCode = h.ProdHeaderDossierCode) &gt; 0&#xD;&#xA;&#x9;&#x9;THEN TRY_CAST(LEFT(h.Description, 1) AS decimal(10,3))&#xD;&#xA;&#x9;&#x9;ELSE NULL &#xD;&#xA;&#x9;END AS [Cavities],&#xD;&#xA;&#x9;(SELECT linenr &#xD;&#xA;&#x9; FROM [T_ProdBillOfOper] bo &#xD;&#xA;&#x9; WHERE bo.ProdHeaderDossierCode = h.ProdHeaderDossierCode &#xD;&#xA;&#x9; AND bo.MachGrpCode LIKE '%ENG%') AS [ENG_LineNr],&#xD;&#xA;&#x9;(SELECT COUNT(*) &#xD;&#xA;&#x9; FROM [T_ProdBillOfMat] bm &#xD;&#xA;&#x9; WHERE bm.ProdHeaderDossierCode = h.ProdHeaderDossierCode) AS [QTY_Article_Rows]&#xD;&#xA;FROM &#xD;&#xA;&#x9;[T_ProductionHeader] h&#xD;&#xA;&#x9;LEFT JOIN T_ProdHeadProdBOMLink PHPBL on PHPBL.Prodheaderdossiercode = h.prodheaderdossiercode &#xD;&#xA;&#x9;LEFT JOIN [T_prodbillofmat] PBOM on (PBOM.prodBomLineNr = PHPBL.ProdBomLineNr AND PBOM.prodheaderdossiercode = PHPBL.ProdBOMprodheaderdossiercode)&#xD;&#xA;  WHERE DOSSIERCODE = (SELECT DISTINCT DOSSIERCODE FROM [T_ProductionHeader] WHERE prodheaderdossiercode = @ProdHeaderDossierCode) &#xD;&#xA;  AND (Select Min(ProdBOMProdHeaderDossierCode) From T_ProdHeadProdBOMLink PHPBL Where PHPBL.ProdHeaderDossierCode = h.ProdHeaderDossiercode) IS NULL -- Only Head PD's&#xD;&#xA;  AND prodstatuscode = 20 AND (SELECT COUNT(*) FROM [T_ProdBillOfMat] bm LEFT JOIN [T_ProductionHeader] tbm on tbm.prodheaderdossiercode = bm.prodheaderdossiercode WHERE 1=1 &#xD;&#xA;&#x9;&#x9;AND bm.ProdHeaderDossierCode = h.ProdHeaderDossierCode&#xD;&#xA;&#x9;&#x9;) &gt; 0 --Filter Valid Head PD's&#xD;&#xA;  )&#xD;&#xA;&#xD;&#xA; SELECT HeadPD_ProdHeaderDossierCode,ProdHeaderDossierCode,PartPos,LineNr,SubPartCode,Shaped_Article,&#xD;&#xA; CAST(Cavities AS Decimal) [Cavities] ,&#xD;&#xA; CAST(Qty_Old  AS Decimal) [Qty_Old] ,&#xD;&#xA; CAST(Qty_New  AS Decimal) [Qty_New]  FROM (&#xD;&#xA; SELECT&#xD;&#xA;  bm.ProdHeaderDossierCode [HeadPD_ProdHeaderDossierCode], &#xD;&#xA;  PHPBL.ProdHeaderDossierCode,&#xD;&#xA;  bm.Partpos,&#xD;&#xA;  bm.LineNr,&#xD;&#xA;  SubPartCode,&#xD;&#xA;&#x9;CASE &#xD;&#xA;&#x9;&#x9;WHEN SUBpartcode IN (SELECT Partcode FROM [StarcodeRPA]..VormArtikelenReferentie) &#xD;&#xA;&#x9;&#x9;THEN 'YES' &#xD;&#xA;&#x9;&#x9;ELSE 'NO' &#xD;&#xA;&#x9;END AS [Shaped_Article],&#xD;&#xA;&#x9;(SELECT MAX(Cavities) FROM ValidHeadPDCavitiesReference) [Cavities],&#xD;&#xA;&#x9;tbm.Qty AS Qty_Old,&#xD;&#xA;&#x9;CASE WHEN tbm.Qty &gt; 1 AND SUBpartcode IN (SELECT Partcode FROM [StarcodeRPA]..VormArtikelenReferentie) THEN (SELECT MAX(Cavities) FROM ValidHeadPDCavitiesReference) ELSE tbm.Qty END AS [Qty_New]&#xD;&#xA;  FROM [T_prodbillofmat] bm&#xD;&#xA;  LEFT JOIN T_ProdHeadProdBOMLink PHPBL on (bm.prodBomLineNr = PHPBL.ProdBomLineNr AND bm.prodheaderdossiercode = PHPBL.ProdBOMprodheaderdossiercode)&#xD;&#xA;  LEFT JOIN [T_ProductionHeader] tbm on tbm.prodheaderdossiercode = PHPBL.prodheaderdossiercode&#xD;&#xA;  WHERE bm.ProdHeaderDossierCode = @ProdHeaderDossierCode&#xD;&#xA;  AND tbm.ProdStatusCode = 15 --Filter for code 15 to exclude sub PD's that are already processed.&#xD;&#xA;  ) a WHERE Qty_Old &lt;&gt; Qty_New order by LineNr&#xD;&#xA;  &quot;]">
+                    <ui:ExecuteQuery.Parameters>
+                      <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                    </ui:ExecuteQuery.Parameters>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:ExecuteQuery>
+                  <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_QTY_Row_Information]" DisplayName="For Each Row in dt_HeadPD_QTY_Row_Information" sap:VirtualizedContainerService.HintSize="636,882.6666666666666" sap2010:WorkflowViewState.IdRef="ForEachRow_4">
+                    <ui:ForEachRow.Body>
+                      <ActivityAction x:TypeArguments="sd:DataRow">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="634,708" sap2010:WorkflowViewState.IdRef="Sequence_128">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Flowchart sap:VirtualizedContainerService.HintSize="600,648" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                <av:Point x:Key="ShapeLocation">275,35</av:Point>
+                                <av:Size x:Key="ShapeSize">50,50</av:Size>
+                                <av:PointCollection x:Key="ConnectorLocation">300,85 300,115 290,115 290,130.5</av:PointCollection>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Flowchart.StartNode>
+                              <x:Reference>__ReferenceID4</x:Reference>
+                            </Flowchart.StartNode>
+                            <FlowDecision x:Name="__ReferenceID4" Condition="[CDbl(currentrow(&quot;Qty_new&quot;).ToString) &gt; CDbl(currentrow(&quot;Qty_old&quot;).ToString)]" DisplayName="New &gt; Old?" sap:VirtualizedContainerService.HintSize="60,60" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <av:Point x:Key="ShapeLocation">260.5,130.5</av:Point>
+                                  <av:Size x:Key="ShapeSize">60,60</av:Size>
+                                  <av:PointCollection x:Key="TrueConnector">260.5,160 205,160</av:PointCollection>
+                                  <av:PointCollection x:Key="FalseConnector">320.5,160.5 350.5,160.5 350.5,160 365,160</av:PointCollection>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <FlowDecision.True>
+                                <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_1">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <av:Point x:Key="ShapeLocation">95,125</av:Point>
+                                      <av:Size x:Key="ShapeSize">110,70</av:Size>
+                                      <av:PointCollection x:Key="ConnectorLocation">150,195 150,245</av:PointCollection>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="06.01 Process QTY lines - 0092 - New - Invoke Workflow File (06.01 Process QTY lines - 0092 - New.xaml)" sap:VirtualizedContainerService.HintSize="110,70" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="06.01 Process QTY lines - 0092 - New.xaml">
+                                    <ui:InvokeWorkflowFile.Arguments>
+                                      <InArgument x:TypeArguments="x:Boolean" x:Key="Testrun">[Testrun]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="OrderNr">[OrderNr]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="Database">[Database]</InArgument>
+                                      <InArgument x:TypeArguments="x:Int32" x:Key="Route">1</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="ProdHeaderDossierCode">[currentrow("ProdHeaderDossierCode").tostring]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="Qty_old">[currentrow("Qty_old").tostring]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="Qty_new">[currentrow("Qty_new").tostring]</InArgument>
+                                    </ui:InvokeWorkflowFile.Arguments>
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                  </ui:InvokeWorkflowFile>
+                                  <FlowStep.Next>
+                                    <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_2">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <av:Point x:Key="ShapeLocation">95,245</av:Point>
+                                          <av:Size x:Key="ShapeSize">110,70</av:Size>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="06.02 Process QTY lines - 0094 - New - Invoke Workflow File (06.02 Process QTY lines - 0094 - New.xaml)" sap:VirtualizedContainerService.HintSize="110,70" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="06.02 Process QTY lines - 0094 - New.xaml">
+                                        <ui:InvokeWorkflowFile.Arguments>
+                                          <InArgument x:TypeArguments="x:Boolean" x:Key="Testrun">[Testrun]</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="OrderNr">[OrderNr]</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="Database">[Database]</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="HeadPD_ProdHeaderDossierCode">[currentrow("HeadPD_ProdHeaderDossierCode").tostring]</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="LineNr">[currentrow("LineNr").tostring]</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="Qty_old">[currentrow("Qty_old").tostring]</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="Qty_new">[currentrow("Qty_new").tostring]</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="ProdHeaderDossierCode">[currentrow("ProdHeaderDossierCode").tostring]</InArgument>
+                                        </ui:InvokeWorkflowFile.Arguments>
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:InvokeWorkflowFile>
+                                    </FlowStep>
+                                  </FlowStep.Next>
+                                </FlowStep>
+                              </FlowDecision.True>
+                              <FlowDecision.False>
+                                <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_3">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <av:Point x:Key="ShapeLocation">365,125</av:Point>
+                                      <av:Size x:Key="ShapeSize">110,70</av:Size>
+                                      <av:PointCollection x:Key="ConnectorLocation">420,195 420,245</av:PointCollection>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="06.02 Process QTY lines - 0094 - New - Invoke Workflow File (06.02 Process QTY lines - 0094 - New.xaml)" sap:VirtualizedContainerService.HintSize="110,70" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="06.02 Process QTY lines - 0094 - New.xaml">
+                                    <ui:InvokeWorkflowFile.Arguments>
+                                      <InArgument x:TypeArguments="x:Boolean" x:Key="Testrun">[Testrun]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="OrderNr">[OrderNr]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="Database">[Database]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="HeadPD_ProdHeaderDossierCode">[currentrow("HeadPD_ProdHeaderDossierCode").tostring]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="LineNr">[currentrow("LineNr").tostring]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="Qty_old">[currentrow("Qty_old").tostring]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="Qty_new">[currentrow("Qty_new").tostring]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="ProdHeaderDossierCode">[currentrow("ProdHeaderDossierCode").tostring]</InArgument>
+                                    </ui:InvokeWorkflowFile.Arguments>
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                  </ui:InvokeWorkflowFile>
+                                  <FlowStep.Next>
+                                    <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_4">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <av:Point x:Key="ShapeLocation">365,245</av:Point>
+                                          <av:Size x:Key="ShapeSize">110,70</av:Size>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="06.01 Process QTY lines - 0092 - New - Invoke Workflow File (06.01 Process QTY lines - 0092 - New.xaml)" sap:VirtualizedContainerService.HintSize="110,70" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="06.01 Process QTY lines - 0092 - New.xaml">
+                                        <ui:InvokeWorkflowFile.Arguments>
+                                          <InArgument x:TypeArguments="x:Boolean" x:Key="Testrun">[Testrun]</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="OrderNr">[OrderNr]</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="Database">[Database]</InArgument>
+                                          <InArgument x:TypeArguments="x:Int32" x:Key="Route">2</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="ProdHeaderDossierCode">[currentrow("ProdHeaderDossierCode").tostring]</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="Qty_old">[currentrow("Qty_old").tostring]</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="Qty_new">[currentrow("Qty_new").tostring]</InArgument>
+                                        </ui:InvokeWorkflowFile.Arguments>
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:InvokeWorkflowFile>
+                                    </FlowStep>
+                                  </FlowStep.Next>
+                                </FlowStep>
+                              </FlowDecision.False>
+                            </FlowDecision>
+                            <x:Reference>__ReferenceID0</x:Reference>
+                            <x:Reference>__ReferenceID1</x:Reference>
+                            <x:Reference>__ReferenceID2</x:Reference>
+                            <x:Reference>__ReferenceID3</x:Reference>
+                          </Flowchart>
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:ForEachRow.Body>
+                  </ui:ForEachRow>
+                </Sequence>
+              </ActivityAction>
+            </ui:ForEachRow.Body>
+          </ui:ForEachRow>
+          <Assign DisplayName="Set flow success to true" sap:VirtualizedContainerService.HintSize="672,48" sap2010:WorkflowViewState.IdRef="Assign_2">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Int32">[QTY_LINES_FLOW_SUCCESS]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Int32">1</InArgument>
+            </Assign.Value>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Assign>
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="858,23" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="706,280" sap2010:WorkflowViewState.IdRef="Sequence_47">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Process QTY Lines flow Failed" sap:VirtualizedContainerService.HintSize="672,57" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Error" Message="[&quot;Process QTY Lines flow Failed&quot;]">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:LogMessage>
+              <ui:LogMessage DisplayName="Log Exception" sap:VirtualizedContainerService.HintSize="672,57.333333333333336" sap2010:WorkflowViewState.IdRef="LogMessage_13" Message="[exception.Message]">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:LogMessage>
+              <Assign DisplayName="Set worfklow succes to False" sap:VirtualizedContainerService.HintSize="672,57.333333333333336" sap2010:WorkflowViewState.IdRef="Assign_1">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Int32">[QTY_LINES_FLOW_SUCCESS]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Int32">2</InArgument>
+                </Assign.Value>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Assign>
+              <TerminateWorkflow DisplayName="Terminate Workflow" sap:VirtualizedContainerService.HintSize="672,48" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_2" Reason="[exception.Message]">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </TerminateWorkflow>
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+      <TryCatch.Finally>
+        <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="706,90.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_139">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </TryCatch.Finally>
+    </TryCatch>
+  </Sequence>
+</Activity>

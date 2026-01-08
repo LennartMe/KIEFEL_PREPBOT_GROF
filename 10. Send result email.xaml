@@ -1,0 +1,639 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="_10__Send_result_email" this:_10__Send_result_email.OrderNr="20242178" this:_10__Send_result_email.Database="ProduktieDB" this:_10__Send_result_email.ENG_LINES_FLOW_SUCCESS="1" this:_10__Send_result_email.CORRECT_MACH_AND_MAN_HOURS_AND_BUFFERTIMES_FLOW_SUCCESS="1" this:_10__Send_result_email.CHECK_EXTERNAL_FLOW_SUCCESS="1" this:_10__Send_result_email.PERFORM_LEAD_TIME_PLANNING_FLOW_SUCCESS="1" this:_10__Send_result_email.CHANGE_PLAN_DATA_FLOW_SUCCESS="1" this:_10__Send_result_email.QTY_LINES_FLOW_SUCCESS="1" this:_10__Send_result_email.BufferTimeRowsToBeChanged="True" this:_10__Send_result_email.ManUrenRowsToBeChanged="True" this:_10__Send_result_email.MachineUrenRowsToBeChanged="True" this:_10__Send_result_email.MachcodeRowsToBeChanged="True" this:_10__Send_result_email.Testrun="False" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="OrderNr" Type="InArgument(x:String)" />
+    <x:Property Name="Database" Type="InArgument(x:String)" />
+    <x:Property Name="ENG_LINES_FLOW_SUCCESS" Type="InArgument(x:Int32)" />
+    <x:Property Name="CORRECT_MACH_AND_MAN_HOURS_AND_BUFFERTIMES_FLOW_SUCCESS" Type="InArgument(x:Int32)" />
+    <x:Property Name="CHECK_EXTERNAL_FLOW_SUCCESS" Type="InArgument(x:Int32)" />
+    <x:Property Name="PERFORM_LEAD_TIME_PLANNING_FLOW_SUCCESS" Type="InArgument(x:Int32)" />
+    <x:Property Name="CHANGE_PLAN_DATA_FLOW_SUCCESS" Type="InArgument(x:Int32)" />
+    <x:Property Name="QTY_LINES_FLOW_SUCCESS" Type="InArgument(x:Int32)" />
+    <x:Property Name="BufferTimeRowsToBeChanged" Type="InArgument(x:Boolean)" />
+    <x:Property Name="ManUrenRowsToBeChanged" Type="InArgument(x:Boolean)" />
+    <x:Property Name="MachineUrenRowsToBeChanged" Type="InArgument(x:Boolean)" />
+    <x:Property Name="MachcodeRowsToBeChanged" Type="InArgument(x:Boolean)" />
+    <x:Property Name="EmailSendForMachCodeFailure" Type="InArgument(x:Boolean)" />
+    <x:Property Name="EmailSendForMachineUrenFailure" Type="InArgument(x:Boolean)" />
+    <x:Property Name="EmailSendForManUrenFailure" Type="InArgument(x:Boolean)" />
+    <x:Property Name="EmailSendForBuffertimeFailure" Type="InArgument(x:Boolean)" />
+    <x:Property Name="Testrun" Type="InArgument(x:Boolean)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1208,4327</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>_10__Send_result_email_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.Database</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>UiPath.Database.Activities</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>UiPath.Database</AssemblyReference>
+      <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="_10__Send_result_email" sap:VirtualizedContainerService.HintSize="834,4381.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="ResultsTable" />
+      <Variable x:TypeArguments="x:Boolean" Name="MachcodeRowsNotChanged" />
+      <Variable x:TypeArguments="x:Boolean" Name="BufferTimeRowsNotChanged" />
+      <Variable x:TypeArguments="x:Boolean" Name="ManUrenRowsNotChanged" />
+      <Variable x:TypeArguments="x:Boolean" Name="MachineUrenRowsNotChanged" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_Successful_Rows_For_Status_Change" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_Unsuccessful_Rows_For_Status_Change" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_Successful_Rows_With_Status_15_After_Status_Change" />
+      <Variable x:TypeArguments="x:Int32" Default="0" Name="Set_Status_To_30_Flow" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_rows_without_next_changes" />
+      <Variable x:TypeArguments="ui:DatabaseConnection" Name="DatabaseConnection" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Connect to DB - Invoke Workflow File (Connect to DB.xaml)" sap:VirtualizedContainerService.HintSize="488,210" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Connect to DB.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <OutArgument x:TypeArguments="ui:DatabaseConnection" x:Key="DatabaseConnection">[DatabaseConnection]</OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <Sequence DisplayName="Check specific Not Processed flows" sap:VirtualizedContainerService.HintSize="488,604.6666666666666" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="sd:DataTable" Name="dt_MachcodeRowsNotChanged" />
+        <Variable x:TypeArguments="sd:DataTable" Name="dt_MachineUrenRowsNotChanged" />
+        <Variable x:TypeArguments="sd:DataTable" Name="dt_ManUrenRowsNotChanged" />
+        <Variable x:TypeArguments="sd:DataTable" Name="dt_BufferTimeRowsNotChanged" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[dt_MachcodeRowsNotChanged]" DisplayName="MachcodeRowsNotChanged true or false" ExistingDbConnection="[DatabaseConnection]" sap:VirtualizedContainerService.HintSize="416,120.66666666666667" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="[&quot;DECLARE @OrderNumber varchar(255)&#xA;SET @OrderNumber = '&quot;+OrderNr+&quot;'&#xA;&#xA;&#x9; SELECT &#xA;&#x9;ProdHeaderDossierCode,&#xA;&#x9;SUM(MachcodeNeedToBeChanged) as [MachcodeRowsToBeChanged],&#xA;&#x9;SUM(MachineUrenNeedToBeChanged) as [MachineUrenRowsToBeChanged],&#xA;&#x9;SUM(ManUrenNeedToBeChanged) as [ManUrenRowsToBeChanged]&#xA;&#xA;FROM (&#xA;&#xA;SELECT&#xA;&#x9;ProdHeaderDossierCode,&#xA;&#x9;Linenr,&#xA;&#x9;MachGrpCode,&#xA;&#x9;MachcodeOld,&#xA;&#x9;MachcodeNew,&#xA;&#x9;CASE WHEN MachcodeOld &lt;&gt; MachcodeNew THEN 1 ELSE 0 END AS MachcodeNeedToBeChanged,&#xA;&#x9;MachineUrenOld,&#xA;&#x9;MachineUrenNew,&#xA;&#x9;CASE WHEN MachineUrenOld &lt;&gt; MachineUrenNew THEN 1 ELSE 0 END AS MachineUrenNeedToBeChanged,&#xA;&#x9;--AVG_MachineUren,&#xA;&#x9;ManUrenOld,&#xA;&#x9;ManUrenNew,&#xA;&#x9;CASE WHEN ManUrenOld &lt;&gt; ManUrenNew THEN 1 ELSE 0 END AS ManUrenNeedToBeChanged,&#xA;&#x9;--AVG_ManUren,&#xA;&#x9;SoortUren&#xA;&#x9;FROM (&#xA;&#xA;SELECT &#xA;    ProdHeaderDossierCode,&#xA;&#x9;LineNr,&#xA;    MachGrpCode,&#xA;&#x9;CASE WHEN MachCode = '     ' THEN '' ELSE Machcode END AS MachcodeOld,&#xA;&#x9;'' AS MachcodeNew,&#xA;    FORMAT(CAST((MachCycleTime / 3600) as decimal(10,3)), 'N2', 'nl-NL') as [MachineUrenOld],&#xA;&#x9;    CASE &#xA;        WHEN MachGrpCode IN ('GL','HA','VER','RSL','BEH') THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL')&#xA;        WHEN PlanningBasedOnType = 2 THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL')&#xA;        WHEN (MachCycleTime = 0 OR MachCycleTime IS NULL) AND OccupationCycleTime &gt; 0 THEN &#xA;            FORMAT(CAST((ROUND((OccupationCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL')&#xA;        WHEN FORMAT(CAST((ROUND((MachCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL') = '0,00' &#xA;             AND FORMAT(CAST(REPLACE((MachCycleTime / 3600),',','.') as decimal(10,1)), 'N2', 'nl-NL') = '0,00' &#xA;             AND MachCycleTime &gt; 0 THEN '0,10'&#xA;        WHEN FORMAT(CAST((ROUND((MachCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL') = '0,00' THEN &#xA;            FORMAT(CAST(REPLACE((MachCycleTime / 3600),',','.') as decimal(10,1)), 'N2', 'nl-NL')&#xA;        ELSE FORMAT(CAST((ROUND((MachCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL')&#xA;    END as [MachineUrenNew],&#xA;&#x9;    (SELECT FORMAT(CAST((AVG(MachCycleTime) / 3600) as decimal(10,3)), 'N2', 'nl-NL') &#xA;     FROM [T_ProdBillOfOper] s1&#xA;     WHERE s1.MachGrpCode = m.MachGrpCode &#xA;       AND s1.ProdBOOLineNr = m.ProdBOOLineNr &#xA;       AND s1.Qty = m.Qty &#xA;       AND s1.PlanningBasedOnType = m.PlanningBasedOnType &#xA;       AND StartDate &gt; GETDATE() -365) as [AVG_MachineUren],&#xA;    FORMAT(CAST((OccupationCycleTime / 3600) as decimal(10,3)), 'N2', 'nl-NL') as [ManUrenOld],&#xA;    CASE &#xA;        WHEN MachGrpCode IN ('GL','HA','VER','RSL','BEH') THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL')&#xA;        WHEN PlanningBasedOnType = 1 THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL')&#xA;        WHEN (OccupationCycleTime = 0 OR OccupationCycleTime IS NULL) AND MachCycleTime &gt; 0 THEN &#xA;            FORMAT(CAST((ROUND((MachCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL')&#xA;        WHEN FORMAT(CAST((ROUND((OccupationCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL') = '0,00' &#xA;             AND FORMAT(CAST(REPLACE((OccupationCycleTime / 3600),',','.') as decimal(10,1)), 'N2', 'nl-NL') = '0,00' &#xA;             AND OccupationCycleTime &gt; 0 THEN '0,10'&#xA;        WHEN FORMAT(CAST((ROUND((OccupationCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL') = '0,00' THEN &#xA;            FORMAT(CAST(REPLACE((OccupationCycleTime / 3600),',','.') as decimal(10,1)), 'N2', 'nl-NL')&#xA;        ELSE FORMAT(CAST((ROUND((OccupationCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL')&#xA;    END as [ManUrenNew],&#xA;    (SELECT FORMAT(CAST((AVG(OccupationCycleTime) / 3600) as decimal(10,3)), 'N2', 'nl-NL') &#xA;     FROM [T_ProdBillOfOper] s2&#xA;     WHERE s2.MachGrpCode = m.MachGrpCode &#xA;       AND s2.ProdBOOLineNr = m.ProdBOOLineNr &#xA;       AND s2.Qty = m.Qty &#xA;       AND s2.PlanningBasedOnType = m.PlanningBasedOnType &#xA;       AND StartDate &gt; GETDATE() -365) as [AVG_ManUren],&#xA;&#xA;    PlanningBasedOnType,&#xA;    CASE &#xA;        WHEN PlanningBasedOnType = 2 THEN 'ManUren' &#xA;        WHEN PlanningBasedOnType = 1 THEN 'MachineUren' &#xA;        ELSE '' &#xA;    END AS SoortUren&#xA;    &#xA;FROM [T_ProdBillOfOper] m&#xA;&#xA;Where ProdHeaderDossierCode IN --('')&#xA;&#x9;(SELECT h.ProdHeaderDossierCode FROM &#xA;&#x9;[T_ProductionHeader] h&#xA;&#x9;LEFT JOIN T_ProdHeadProdBOMLink PHPBL on PHPBL.Prodheaderdossiercode = h.prodheaderdossiercode &#xA;&#x9;LEFT JOIN [T_prodbillofmat] PBOM on (PBOM.prodBomLineNr = PHPBL.ProdBomLineNr AND PBOM.prodheaderdossiercode = PHPBL.ProdBOMprodheaderdossiercode)&#xA;&#x9;WHERE DOSSIERCODE = (SELECT DISTINCT DOSSIERCODE FROM [T_ProductionHeader] WITH (NOLOCK) WHERE '20' + SUBSTRING(REPLACE(DESIGNCODE, '.', ''), 1, 6) = @OrderNumber) &#xA;&#x9;AND (Select Min(ProdBOMProdHeaderDossierCode) From T_ProdHeadProdBOMLink PHPBL Where PHPBL.ProdHeaderDossierCode = h.ProdHeaderDossiercode) IS NOT NULL)&#xA;) a &#xA;) b &#xA;&#x9;GROUP BY ProdHeaderDossierCode HAVING SUM(MachcodeNeedToBeChanged) &gt; 0&#xA;&#x9;--) c&quot;]">
+        <ui:ExecuteQuery.Parameters>
+          <scg:Dictionary x:TypeArguments="x:String, Argument" />
+        </ui:ExecuteQuery.Parameters>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:ExecuteQuery>
+      <If Condition="[dt_MachcodeRowsNotChanged.rowcount &gt; 0]" DisplayName="Set MachcodeRowsNotChanged true or false" sap:VirtualizedContainerService.HintSize="416,57.333333333333336" sap2010:WorkflowViewState.IdRef="If_1">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="Set MachcodeRowsNotChanged to True" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_2">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Boolean">[MachcodeRowsNotChanged]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="Set MachcodeRowsNotChanged to False" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_3">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Boolean">[MachcodeRowsNotChanged]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </If.Else>
+      </If>
+      <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[dt_MachineUrenRowsNotChanged]" DisplayName="MachineUrenRowsNotChanged true or false" ExistingDbConnection="[DatabaseConnection]" sap:VirtualizedContainerService.HintSize="416,57.333333333333336" sap2010:WorkflowViewState.IdRef="ExecuteQuery_2" Sql="[&quot;DECLARE @OrderNumber varchar(255)&#xA;SET @OrderNumber = '&quot;+OrderNr+&quot;'&#xA;&#xA;&#x9; SELECT &#xA;&#x9;ProdHeaderDossierCode,&#xA;&#x9;SUM(MachcodeNeedToBeChanged) as [MachcodeRowsToBeChanged],&#xA;&#x9;SUM(MachineUrenNeedToBeChanged) as [MachineUrenRowsToBeChanged],&#xA;&#x9;SUM(ManUrenNeedToBeChanged) as [ManUrenRowsToBeChanged]&#xA;&#xA;FROM (&#xA;&#xA;SELECT&#xA;&#x9;ProdHeaderDossierCode,&#xA;&#x9;Linenr,&#xA;&#x9;MachGrpCode,&#xA;&#x9;MachcodeOld,&#xA;&#x9;MachcodeNew,&#xA;&#x9;CASE WHEN MachcodeOld &lt;&gt; MachcodeNew THEN 1 ELSE 0 END AS MachcodeNeedToBeChanged,&#xA;&#x9;MachineUrenOld,&#xA;&#x9;MachineUrenNew,&#xA;&#x9;CASE WHEN MachineUrenOld &lt;&gt; MachineUrenNew THEN 1 ELSE 0 END AS MachineUrenNeedToBeChanged,&#xA;&#x9;--AVG_MachineUren,&#xA;&#x9;ManUrenOld,&#xA;&#x9;ManUrenNew,&#xA;&#x9;CASE WHEN ManUrenOld &lt;&gt; ManUrenNew THEN 1 ELSE 0 END AS ManUrenNeedToBeChanged,&#xA;&#x9;--AVG_ManUren,&#xA;&#x9;SoortUren&#xA;&#x9;FROM (&#xA;&#xA;SELECT &#xA;    ProdHeaderDossierCode,&#xA;&#x9;LineNr,&#xA;    MachGrpCode,&#xA;&#x9;CASE WHEN MachCode = '     ' THEN '' ELSE Machcode END AS MachcodeOld,&#xA;&#x9;'' AS MachcodeNew,&#xA;    FORMAT(CAST((MachCycleTime / 3600) as decimal(10,3)), 'N2', 'nl-NL') as [MachineUrenOld],&#xA;&#x9;    CASE &#xA;        WHEN MachGrpCode IN ('GL','HA','VER','RSL','BEH') THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL')&#xA;        WHEN PlanningBasedOnType = 2 THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL')&#xA;        WHEN (MachCycleTime = 0 OR MachCycleTime IS NULL) AND OccupationCycleTime &gt; 0 THEN &#xA;            FORMAT(CAST((ROUND((OccupationCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL')&#xA;        WHEN FORMAT(CAST((ROUND((MachCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL') = '0,00' &#xA;             AND FORMAT(CAST(REPLACE((MachCycleTime / 3600),',','.') as decimal(10,1)), 'N2', 'nl-NL') = '0,00' &#xA;             AND MachCycleTime &gt; 0 THEN '0,10'&#xA;        WHEN FORMAT(CAST((ROUND((MachCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL') = '0,00' THEN &#xA;            FORMAT(CAST(REPLACE((MachCycleTime / 3600),',','.') as decimal(10,1)), 'N2', 'nl-NL')&#xA;        ELSE FORMAT(CAST((ROUND((MachCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL')&#xA;    END as [MachineUrenNew],&#xA;&#x9;    (SELECT FORMAT(CAST((AVG(MachCycleTime) / 3600) as decimal(10,3)), 'N2', 'nl-NL') &#xA;     FROM [T_ProdBillOfOper] s1&#xA;     WHERE s1.MachGrpCode = m.MachGrpCode &#xA;       AND s1.ProdBOOLineNr = m.ProdBOOLineNr &#xA;       AND s1.Qty = m.Qty &#xA;       AND s1.PlanningBasedOnType = m.PlanningBasedOnType &#xA;       AND StartDate &gt; GETDATE() -365) as [AVG_MachineUren],&#xA;    FORMAT(CAST((OccupationCycleTime / 3600) as decimal(10,3)), 'N2', 'nl-NL') as [ManUrenOld],&#xA;    CASE &#xA;        WHEN MachGrpCode IN ('GL','HA','VER','RSL','BEH') THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL')&#xA;        WHEN PlanningBasedOnType = 1 THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL')&#xA;        WHEN (OccupationCycleTime = 0 OR OccupationCycleTime IS NULL) AND MachCycleTime &gt; 0 THEN &#xA;            FORMAT(CAST((ROUND((MachCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL')&#xA;        WHEN FORMAT(CAST((ROUND((OccupationCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL') = '0,00' &#xA;             AND FORMAT(CAST(REPLACE((OccupationCycleTime / 3600),',','.') as decimal(10,1)), 'N2', 'nl-NL') = '0,00' &#xA;             AND OccupationCycleTime &gt; 0 THEN '0,10'&#xA;        WHEN FORMAT(CAST((ROUND((OccupationCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL') = '0,00' THEN &#xA;            FORMAT(CAST(REPLACE((OccupationCycleTime / 3600),',','.') as decimal(10,1)), 'N2', 'nl-NL')&#xA;        ELSE FORMAT(CAST((ROUND((OccupationCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL')&#xA;    END as [ManUrenNew],&#xA;    (SELECT FORMAT(CAST((AVG(OccupationCycleTime) / 3600) as decimal(10,3)), 'N2', 'nl-NL') &#xA;     FROM [T_ProdBillOfOper] s2&#xA;     WHERE s2.MachGrpCode = m.MachGrpCode &#xA;       AND s2.ProdBOOLineNr = m.ProdBOOLineNr &#xA;       AND s2.Qty = m.Qty &#xA;       AND s2.PlanningBasedOnType = m.PlanningBasedOnType &#xA;       AND StartDate &gt; GETDATE() -365) as [AVG_ManUren],&#xA;&#xA;    PlanningBasedOnType,&#xA;    CASE &#xA;        WHEN PlanningBasedOnType = 2 THEN 'ManUren' &#xA;        WHEN PlanningBasedOnType = 1 THEN 'MachineUren' &#xA;        ELSE '' &#xA;    END AS SoortUren&#xA;    &#xA;FROM [T_ProdBillOfOper] m&#xA;&#xA;Where ProdHeaderDossierCode IN --('')&#xA;&#x9;(SELECT h.ProdHeaderDossierCode FROM &#xA;&#x9;[T_ProductionHeader] h&#xA;&#x9;LEFT JOIN T_ProdHeadProdBOMLink PHPBL on PHPBL.Prodheaderdossiercode = h.prodheaderdossiercode &#xA;&#x9;LEFT JOIN [T_prodbillofmat] PBOM on (PBOM.prodBomLineNr = PHPBL.ProdBomLineNr AND PBOM.prodheaderdossiercode = PHPBL.ProdBOMprodheaderdossiercode)&#xA;&#x9;WHERE DOSSIERCODE = (SELECT DISTINCT DOSSIERCODE FROM [T_ProductionHeader] WITH (NOLOCK) WHERE '20' + SUBSTRING(REPLACE(DESIGNCODE, '.', ''), 1, 6) = @OrderNumber) &#xA;&#x9;AND (Select Min(ProdBOMProdHeaderDossierCode) From T_ProdHeadProdBOMLink PHPBL Where PHPBL.ProdHeaderDossierCode = h.ProdHeaderDossiercode) IS NOT NULL)&#xA;) a &#xA;) b &#xA;&#x9;GROUP BY ProdHeaderDossierCode HAVING SUM(MachineUrenNeedToBeChanged) &gt; 0 --OR SUM(ManUrenNeedToBeChanged) &gt; 0&#xA;&#x9;--) c&quot;]">
+        <ui:ExecuteQuery.Parameters>
+          <scg:Dictionary x:TypeArguments="x:String, Argument" />
+        </ui:ExecuteQuery.Parameters>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:ExecuteQuery>
+      <If Condition="[dt_MachineUrenRowsNotChanged.rowcount &gt; 0]" DisplayName="Set MachineUrenRowsNotChanged true or false" sap:VirtualizedContainerService.HintSize="416,57.333333333333336" sap2010:WorkflowViewState.IdRef="If_2">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_5">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="Set MachineUrenRowsNotChanged to True" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_4">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Boolean">[MachineUrenRowsNotChanged]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Boolean">[true]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_6">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="Set MachineUrenRowsNotChanged to False" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_5">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Boolean">[MachineUrenRowsNotChanged]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Boolean">[false]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </If.Else>
+      </If>
+      <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[dt_ManUrenRowsNotChanged]" DisplayName="ManUrenRowsNotChanged true or false" ExistingDbConnection="[DatabaseConnection]" sap:VirtualizedContainerService.HintSize="416,57.333333333333336" sap2010:WorkflowViewState.IdRef="ExecuteQuery_3" Sql="[&quot;DECLARE @OrderNumber varchar(255)&#xA;SET @OrderNumber = '&quot;+OrderNr+&quot;'&#xA;&#xA;&#x9; SELECT &#xA;&#x9;ProdHeaderDossierCode,&#xA;&#x9;SUM(MachcodeNeedToBeChanged) as [MachcodeRowsToBeChanged],&#xA;&#x9;SUM(MachineUrenNeedToBeChanged) as [MachineUrenRowsToBeChanged],&#xA;&#x9;SUM(ManUrenNeedToBeChanged) as [ManUrenRowsToBeChanged]&#xA;&#xA;FROM (&#xA;&#xA;SELECT&#xA;&#x9;ProdHeaderDossierCode,&#xA;&#x9;Linenr,&#xA;&#x9;MachGrpCode,&#xA;&#x9;MachcodeOld,&#xA;&#x9;MachcodeNew,&#xA;&#x9;CASE WHEN MachcodeOld &lt;&gt; MachcodeNew THEN 1 ELSE 0 END AS MachcodeNeedToBeChanged,&#xA;&#x9;MachineUrenOld,&#xA;&#x9;MachineUrenNew,&#xA;&#x9;CASE WHEN MachineUrenOld &lt;&gt; MachineUrenNew THEN 1 ELSE 0 END AS MachineUrenNeedToBeChanged,&#xA;&#x9;--AVG_MachineUren,&#xA;&#x9;ManUrenOld,&#xA;&#x9;ManUrenNew,&#xA;&#x9;CASE WHEN ManUrenOld &lt;&gt; ManUrenNew THEN 1 ELSE 0 END AS ManUrenNeedToBeChanged,&#xA;&#x9;--AVG_ManUren,&#xA;&#x9;SoortUren&#xA;&#x9;FROM (&#xA;&#xA;SELECT &#xA;    ProdHeaderDossierCode,&#xA;&#x9;LineNr,&#xA;    MachGrpCode,&#xA;&#x9;CASE WHEN MachCode = '     ' THEN '' ELSE Machcode END AS MachcodeOld,&#xA;&#x9;'' AS MachcodeNew,&#xA;    FORMAT(CAST((MachCycleTime / 3600) as decimal(10,3)), 'N2', 'nl-NL') as [MachineUrenOld],&#xA;&#x9;    CASE &#xA;        WHEN MachGrpCode IN ('GL','HA','VER','RSL','BEH') THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL')&#xA;        WHEN PlanningBasedOnType = 2 THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL')&#xA;        WHEN (MachCycleTime = 0 OR MachCycleTime IS NULL) AND OccupationCycleTime &gt; 0 THEN &#xA;            FORMAT(CAST((ROUND((OccupationCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL')&#xA;        WHEN FORMAT(CAST((ROUND((MachCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL') = '0,00' &#xA;             AND FORMAT(CAST(REPLACE((MachCycleTime / 3600),',','.') as decimal(10,1)), 'N2', 'nl-NL') = '0,00' &#xA;             AND MachCycleTime &gt; 0 THEN '0,10'&#xA;        WHEN FORMAT(CAST((ROUND((MachCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL') = '0,00' THEN &#xA;            FORMAT(CAST(REPLACE((MachCycleTime / 3600),',','.') as decimal(10,1)), 'N2', 'nl-NL')&#xA;        ELSE FORMAT(CAST((ROUND((MachCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL')&#xA;    END as [MachineUrenNew],&#xA;&#x9;    (SELECT FORMAT(CAST((AVG(MachCycleTime) / 3600) as decimal(10,3)), 'N2', 'nl-NL') &#xA;     FROM [T_ProdBillOfOper] s1&#xA;     WHERE s1.MachGrpCode = m.MachGrpCode &#xA;       AND s1.ProdBOOLineNr = m.ProdBOOLineNr &#xA;       AND s1.Qty = m.Qty &#xA;       AND s1.PlanningBasedOnType = m.PlanningBasedOnType &#xA;       AND StartDate &gt; GETDATE() -365) as [AVG_MachineUren],&#xA;    FORMAT(CAST((OccupationCycleTime / 3600) as decimal(10,3)), 'N2', 'nl-NL') as [ManUrenOld],&#xA;    CASE &#xA;        WHEN MachGrpCode IN ('GL','HA','VER','RSL','BEH') THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL')&#xA;        WHEN PlanningBasedOnType = 1 THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL')&#xA;        WHEN (OccupationCycleTime = 0 OR OccupationCycleTime IS NULL) AND MachCycleTime &gt; 0 THEN &#xA;            FORMAT(CAST((ROUND((MachCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL')&#xA;        WHEN FORMAT(CAST((ROUND((OccupationCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL') = '0,00' &#xA;             AND FORMAT(CAST(REPLACE((OccupationCycleTime / 3600),',','.') as decimal(10,1)), 'N2', 'nl-NL') = '0,00' &#xA;             AND OccupationCycleTime &gt; 0 THEN '0,10'&#xA;        WHEN FORMAT(CAST((ROUND((OccupationCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL') = '0,00' THEN &#xA;            FORMAT(CAST(REPLACE((OccupationCycleTime / 3600),',','.') as decimal(10,1)), 'N2', 'nl-NL')&#xA;        ELSE FORMAT(CAST((ROUND((OccupationCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL')&#xA;    END as [ManUrenNew],&#xA;    (SELECT FORMAT(CAST((AVG(OccupationCycleTime) / 3600) as decimal(10,3)), 'N2', 'nl-NL') &#xA;     FROM [T_ProdBillOfOper] s2&#xA;     WHERE s2.MachGrpCode = m.MachGrpCode &#xA;       AND s2.ProdBOOLineNr = m.ProdBOOLineNr &#xA;       AND s2.Qty = m.Qty &#xA;       AND s2.PlanningBasedOnType = m.PlanningBasedOnType &#xA;       AND StartDate &gt; GETDATE() -365) as [AVG_ManUren],&#xA;&#xA;    PlanningBasedOnType,&#xA;    CASE &#xA;        WHEN PlanningBasedOnType = 2 THEN 'ManUren' &#xA;        WHEN PlanningBasedOnType = 1 THEN 'MachineUren' &#xA;        ELSE '' &#xA;    END AS SoortUren&#xA;    &#xA;FROM [T_ProdBillOfOper] m&#xA;&#xA;Where ProdHeaderDossierCode IN --('')&#xA;&#x9;(SELECT h.ProdHeaderDossierCode FROM &#xA;&#x9;[T_ProductionHeader] h&#xA;&#x9;LEFT JOIN T_ProdHeadProdBOMLink PHPBL on PHPBL.Prodheaderdossiercode = h.prodheaderdossiercode &#xA;&#x9;LEFT JOIN [T_prodbillofmat] PBOM on (PBOM.prodBomLineNr = PHPBL.ProdBomLineNr AND PBOM.prodheaderdossiercode = PHPBL.ProdBOMprodheaderdossiercode)&#xA;&#x9;WHERE DOSSIERCODE = (SELECT DISTINCT DOSSIERCODE FROM [T_ProductionHeader] WITH (NOLOCK) WHERE '20' + SUBSTRING(REPLACE(DESIGNCODE, '.', ''), 1, 6) = @OrderNumber) &#xA;&#x9;AND (Select Min(ProdBOMProdHeaderDossierCode) From T_ProdHeadProdBOMLink PHPBL Where PHPBL.ProdHeaderDossierCode = h.ProdHeaderDossiercode) IS NOT NULL)&#xA;) a &#xA;) b &#xA;&#x9;GROUP BY ProdHeaderDossierCode HAVING SUM(ManUrenNeedToBeChanged) &gt; 0&#xA;&#x9;--) c&quot;]">
+        <ui:ExecuteQuery.Parameters>
+          <scg:Dictionary x:TypeArguments="x:String, Argument" />
+        </ui:ExecuteQuery.Parameters>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:ExecuteQuery>
+      <If Condition="[dt_ManUrenRowsNotChanged.rowcount &gt; 0]" DisplayName="Set ManUrenRowsNotChanged true or false" sap:VirtualizedContainerService.HintSize="416,57.333333333333336" sap2010:WorkflowViewState.IdRef="If_3">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_7">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="Set ManUrenRowsNotChanged True" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_6">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Boolean">[ManUrenRowsNotChanged]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Boolean">[true]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_8">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="Set ManUrenRowsNotChanged False" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_7">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Boolean">[ManUrenRowsNotChanged]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Boolean">[false]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </If.Else>
+      </If>
+      <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[dt_BufferTimeRowsNotChanged]" DisplayName="BufferTimeRowsNotChanged true or false" ExistingDbConnection="[DatabaseConnection]" sap:VirtualizedContainerService.HintSize="416,57.333333333333336" sap2010:WorkflowViewState.IdRef="ExecuteQuery_4" Sql="[&quot;DECLARE @OrderNumber varchar(255)&#xA;SET @OrderNumber = '&quot;+OrderNr+&quot;'&#xA;&#xA;SELECT ProdHeaderDossierCode, SUM(BufferTimeToBeChanged) [BufferTimeRowsToBeChanged] FROM (&#xA;SELECT &#xA;&#x9;ProdHeaderDossierCode, &#xA;&#x9;FORMAT(CAST((WaitTimeAfter / 3600/8) as decimal(10,3)), 'N2', 'nl-NL') [BufferTime],&#xA;&#x9;CASE WHEN FORMAT(CAST((WaitTimeAfter / 3600/8) as decimal(10,3)), 'N2', 'nl-NL') &lt;&gt; '2,00' THEN 1 ELSE 0 END AS [BufferTimeToBeChanged]&#xA;FROM [T_ProductionRouting] &#xA;Where ProdHeaderDossierCode IN --('')&#xA;&#x9;(SELECT h.ProdHeaderDossierCode FROM &#xA;&#x9;[T_ProductionHeader] h&#xA;&#x9;LEFT JOIN T_ProdHeadProdBOMLink PHPBL on PHPBL.Prodheaderdossiercode = h.prodheaderdossiercode &#xA;&#x9;LEFT JOIN [T_prodbillofmat] PBOM on (PBOM.prodBomLineNr = PHPBL.ProdBomLineNr AND PBOM.prodheaderdossiercode = PHPBL.ProdBOMprodheaderdossiercode)&#xA;&#x9;WHERE DOSSIERCODE = (SELECT DISTINCT DOSSIERCODE FROM [T_ProductionHeader] WITH (NOLOCK) WHERE '20' + SUBSTRING(REPLACE(DESIGNCODE, '.', ''), 1, 6) = @OrderNumber) &#xA;&#x9;AND (Select Min(ProdBOMProdHeaderDossierCode) From T_ProdHeadProdBOMLink PHPBL Where PHPBL.ProdHeaderDossierCode = h.ProdHeaderDossiercode) IS NOT NULL)&#xA;) a &#xA;&#x9;GROUP BY ProdHeaderDossierCode HAVING SUM(BufferTimeToBeChanged) &gt; 0&quot;]">
+        <ui:ExecuteQuery.Parameters>
+          <scg:Dictionary x:TypeArguments="x:String, Argument" />
+        </ui:ExecuteQuery.Parameters>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:ExecuteQuery>
+      <If Condition="[dt_BufferTimeRowsNotChanged.rowcount &gt; 0]" DisplayName="Set BufferTimeRowsNotChanged true or false" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="If_4">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,227.33333333333334" sap2010:WorkflowViewState.IdRef="Sequence_9">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="Set BufferTimeRowsNotChanged to True" sap:VirtualizedContainerService.HintSize="416,167.33333333333334" sap2010:WorkflowViewState.IdRef="Assign_8">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Boolean">[BufferTimeRowsNotChanged]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Boolean">[true]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,227.33333333333334" sap2010:WorkflowViewState.IdRef="Sequence_10">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="Set BufferTimeRowsNotChanged to False" sap:VirtualizedContainerService.HintSize="416,167.33333333333334" sap2010:WorkflowViewState.IdRef="Assign_9">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Boolean">[BufferTimeRowsNotChanged]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Boolean">[false]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </If.Else>
+      </If>
+    </Sequence>
+    <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[dt_Successful_Rows_For_Status_Change]" DisplayName="Rows successful" ExistingDbConnection="[DatabaseConnection]" sap:VirtualizedContainerService.HintSize="488,120.66666666666667" sap2010:WorkflowViewState.IdRef="ExecuteQuery_5" Sql="[&quot;DECLARE @OrderNumber varchar(255)&#xA;SET @OrderNumber = '&quot;+OrderNr+&quot;'&#xA;&#xA;  SELECT &#xA;&#x9;ProdHeaderDossierCode,&#xA;&#x9;SUM(MachcodeNeedToBeChanged) as [MachcodeRowsToBeChanged],&#xA;&#x9;SUM(MachineUrenNeedToBeChanged) as [MachineUrenRowsToBeChanged],&#xA;&#x9;SUM(ManUrenNeedToBeChanged) as [ManUrenRowsToBeChanged],&#xA;&#x9;(SELECT SUM([BufferTimeToBeChanged]) AS [BufferTimeRowsToBeChanged] FROM&#xA;&#x9;&#x9;(SELECT CASE WHEN FORMAT(CAST((WaitTimeAfter / 3600/8) as decimal(10,3)), 'N2', 'nl-NL') &lt;&gt; '2,00' THEN 1 ELSE 0 END AS [BufferTimeToBeChanged]&#xA;&#x9;&#x9;&#x9;FROM [T_ProductionRouting] &#xA;&#x9;&#x9;&#x9;Where ProdHeaderDossierCode = b.ProdHeaderDossierCode) a) [BufferTimeRowsToBeChanged]&#xA;&#xA;FROM (&#xA;&#xA;SELECT&#xA;&#x9;ProdHeaderDossierCode,&#xA;&#x9;Linenr,&#xA;&#x9;MachGrpCode,&#xA;&#x9;MachcodeOld,&#xA;&#x9;MachcodeNew,&#xA;&#x9;CASE WHEN MachcodeOld &lt;&gt; MachcodeNew THEN 1 ELSE 0 END AS MachcodeNeedToBeChanged,&#xA;&#x9;MachineUrenOld,&#xA;&#x9;MachineUrenNew,&#xA;&#x9;CASE WHEN MachineUrenOld &lt;&gt; MachineUrenNew THEN 1 ELSE 0 END AS MachineUrenNeedToBeChanged,&#xA;&#x9;--AVG_MachineUren,&#xA;&#x9;ManUrenOld,&#xA;&#x9;ManUrenNew,&#xA;&#x9;CASE WHEN ManUrenOld &lt;&gt; ManUrenNew THEN 1 ELSE 0 END AS ManUrenNeedToBeChanged,&#xA;&#x9;--AVG_ManUren,&#xA;&#x9;SoortUren&#xA;&#x9;FROM (&#xA;&#xA;SELECT &#xA;    ProdHeaderDossierCode,&#xA;&#x9;LineNr,&#xA;    MachGrpCode,&#xA;&#x9;CASE WHEN MachCode = '     ' THEN '' ELSE Machcode END AS MachcodeOld,&#xA;&#x9;'' AS MachcodeNew,&#xA;    QTY,&#xA;    FORMAT(CAST((MachCycleTime / 3600) as decimal(10,3)), 'N2', 'nl-NL') as [MachineUrenOld],&#xA;&#x9;CASE &#xA;        WHEN MachGrpCode IN ('GL','HA','VER','RSL','BEH') &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL') --GL,HA,VER,RSL and BEH should always be 0,00&#xA;        WHEN PlanningBasedOnType = 2 &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL') --If Type is ManHours return 0,00 as new value for MachineHours&#xA;        WHEN (MachCycleTime = 0 OR MachCycleTime IS NULL) AND OccupationCycleTime &gt; 0 AND FORMAT(CAST((ROUND((OccupationCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL') = '0,00'&#xA;&#x9;&#x9;&#x9;THEN '0,10'  --If MachineHours is empty, but ManHours is filled in and above 0, but rounded ManHours is 0, then return 0,10 &#xA;&#x9;&#x9;WHEN (MachCycleTime = 0 OR MachCycleTime IS NULL) AND OccupationCycleTime &gt; 0 &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST((ROUND((OccupationCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL')  --If MachineHours is empty, but ManHours is filled in, copy and round ManHours as new value for MachineHours&#xA;        WHEN FORMAT(CAST((ROUND((MachCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL') = '0,00' &#xA;             AND MachCycleTime &gt; 0 &#xA;&#x9;&#x9;&#x9;THEN '0,10' --If MachineHours is above 0, but rounded it returns as 0,00 then return 0,10&#xA;        WHEN MachCycleTime = 0  &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL') --If MachineHours is 0, return as 0,00 &#xA;        ELSE FORMAT(CAST((ROUND((MachCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL')&#xA;    END as [MachineUrenNew],&#xA;&#x9;    (SELECT FORMAT(CAST((AVG(MachCycleTime) / 3600) as decimal(10,3)), 'N2', 'nl-NL') &#xA;     FROM [T_ProdBillOfOper] s1&#xA;     WHERE s1.MachGrpCode = m.MachGrpCode &#xA;       AND s1.ProdBOOLineNr = m.ProdBOOLineNr &#xA;       AND s1.Qty = m.Qty &#xA;       AND s1.PlanningBasedOnType = m.PlanningBasedOnType &#xA;       AND StartDate &gt; GETDATE() -365) as [AVG_MachineUren],&#xA;    FORMAT(CAST((OccupationCycleTime / 3600) as decimal(10,3)), 'N2', 'nl-NL') as [ManUrenOld],&#xA;&#x9;CASE &#xA;        WHEN MachGrpCode IN ('GL','HA','VER','RSL','BEH') &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL') --GL,HA,VER,RSL and BEH should always be 0,00&#xA;        WHEN PlanningBasedOnType = 1 &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL') --If Type is MachineHours return 0,00 as new value for ManHours&#xA;        WHEN (OccupationCycleTime = 0 OR OccupationCycleTime IS NULL) AND MachCycleTime &gt; 0 AND FORMAT(CAST((ROUND((MachCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL') = '0,00'&#xA;&#x9;&#x9;&#x9;THEN '0,10'  --If ManHours is empty, but MachineHours is filled in and above 0, but rounded MachineHours is 0, then return 0,10 &#xA;&#x9;&#x9;WHEN (OccupationCycleTime = 0 OR OccupationCycleTime IS NULL) AND MachCycleTime &gt; 0 &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST((ROUND((MachCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL')  --If ManHours is empty, but MachineHours is filled in, copy and round MachineHours as new value for ManHours&#xA;        WHEN FORMAT(CAST((ROUND((OccupationCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL') = '0,00' &#xA;             AND OccupationCycleTime &gt; 0 &#xA;&#x9;&#x9;&#x9;THEN '0,10' --If ManHours is above 0, but rounded it returns as 0,00 then return 0,10&#xA;        WHEN OccupationCycleTime = 0  &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL') --If ManHours is 0, return as 0,00 &#xA;        ELSE FORMAT(CAST((ROUND((OccupationCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL')&#xA;    END as [ManUrenNew],&#xA;    (SELECT FORMAT(CAST((AVG(OccupationCycleTime) / 3600) as decimal(10,3)), 'N2', 'nl-NL') &#xA;     FROM [T_ProdBillOfOper] s2&#xA;     WHERE s2.MachGrpCode = m.MachGrpCode &#xA;       AND s2.ProdBOOLineNr = m.ProdBOOLineNr &#xA;       AND s2.Qty = m.Qty &#xA;       AND s2.PlanningBasedOnType = m.PlanningBasedOnType &#xA;       AND StartDate &gt; GETDATE() -365) as [AVG_ManUren],&#xA;&#xA;    PlanningBasedOnType,&#xA;    CASE &#xA;        WHEN PlanningBasedOnType = 2 THEN 'ManUren' &#xA;        WHEN PlanningBasedOnType = 1 THEN 'MachineUren' &#xA;        ELSE '' &#xA;    END AS SoortUren&#xA;    &#xA;FROM [T_ProdBillOfOper] m&#xA;&#xA;Where ProdHeaderDossierCode IN &#xA;&#x9;(SELECT h.ProdHeaderDossierCode FROM &#xA;&#x9;[T_ProductionHeader] h&#xA;&#x9;LEFT JOIN T_ProdHeadProdBOMLink PHPBL on PHPBL.Prodheaderdossiercode = h.prodheaderdossiercode &#xA;&#x9;LEFT JOIN [T_prodbillofmat] PBOM on (PBOM.prodBomLineNr = PHPBL.ProdBomLineNr AND PBOM.prodheaderdossiercode = PHPBL.ProdBOMprodheaderdossiercode)&#xA;&#x9;WHERE DOSSIERCODE = (SELECT DISTINCT DOSSIERCODE FROM [T_ProductionHeader] WITH (NOLOCK) WHERE '20' + SUBSTRING(REPLACE(DESIGNCODE, '.', ''), 1, 6) = @OrderNumber) &#xA;&#x9;AND (Select Min(ProdBOMProdHeaderDossierCode) From T_ProdHeadProdBOMLink PHPBL Where PHPBL.ProdHeaderDossierCode = h.ProdHeaderDossiercode) IS NOT NULL --Only Sub PD's&#xA;&#x9;AND h.ProdStatusCode = 15 --Filter for code 15 to exclude sub PD's that are already processed.&#xA;)&#xA;) a &#xA;) b &#xA;&#x9;GROUP BY ProdHeaderDossierCode HAVING (SUM(MachcodeNeedToBeChanged) = 0 OR SUM(MachcodeNeedToBeChanged) IS NULL) AND (SUM(MachineUrenNeedToBeChanged) = 0 OR SUM(MachineUrenNeedToBeChanged) IS NULL) AND (SUM(ManUrenNeedToBeChanged) = 0 OR SUM(ManUrenNeedToBeChanged) IS NULL) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;AND (&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(SELECT SUM([BufferTimeToBeChanged]) AS [BufferTimeRowsToBeChanged] FROM&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(SELECT CASE WHEN FORMAT(CAST((WaitTimeAfter / 3600/8) as decimal(10,3)), 'N2', 'nl-NL') &lt;&gt; '2,00' THEN 1 ELSE 0 END AS [BufferTimeToBeChanged]&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;FROM [T_ProductionRouting] &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Where ProdHeaderDossierCode = b.ProdHeaderDossierCode) a) = 0 &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;OR&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(SELECT SUM([BufferTimeToBeChanged]) AS [BufferTimeRowsToBeChanged] FROM&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(SELECT CASE WHEN FORMAT(CAST((WaitTimeAfter / 3600/8) as decimal(10,3)), 'N2', 'nl-NL') &lt;&gt; '2,00' THEN 1 ELSE 0 END AS [BufferTimeToBeChanged]&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;FROM [T_ProductionRouting] &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Where ProdHeaderDossierCode = b.ProdHeaderDossierCode) a) IS NULL)&quot;]">
+      <ui:ExecuteQuery.Parameters>
+        <scg:Dictionary x:TypeArguments="x:String, Argument" />
+      </ui:ExecuteQuery.Parameters>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ExecuteQuery>
+    <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[dt_Unsuccessful_Rows_For_Status_Change]" DisplayName="Rows Unsuccessful" ExistingDbConnection="[DatabaseConnection]" sap:VirtualizedContainerService.HintSize="488,120.66666666666667" sap2010:WorkflowViewState.IdRef="ExecuteQuery_6" Sql="[&quot;DECLARE @OrderNumber varchar(255)&#xA;SET @OrderNumber = '&quot;+OrderNr+&quot;'&#xA;&#xA;  SELECT &#xA;&#x9;ProdHeaderDossierCode,&#xA;&#x9;SUM(MachcodeNeedToBeChanged) as [MachcodeRowsToBeChanged],&#xA;&#x9;SUM(MachineUrenNeedToBeChanged) as [MachineUrenRowsToBeChanged],&#xA;&#x9;SUM(ManUrenNeedToBeChanged) as [ManUrenRowsToBeChanged],&#xA;&#x9;(SELECT SUM([BufferTimeToBeChanged]) AS [BufferTimeRowsToBeChanged] FROM&#xA;&#x9;&#x9;(SELECT CASE WHEN FORMAT(CAST((WaitTimeAfter / 3600/8) as decimal(10,3)), 'N2', 'nl-NL') &lt;&gt; '2,00' THEN 1 ELSE 0 END AS [BufferTimeToBeChanged]&#xA;&#x9;&#x9;&#x9;FROM [T_ProductionRouting] &#xA;&#x9;&#x9;&#x9;Where ProdHeaderDossierCode = b.ProdHeaderDossierCode) a) [BufferTimeRowsToBeChanged]&#xA;&#xA;FROM (&#xA;&#xA;SELECT&#xA;&#x9;ProdHeaderDossierCode,&#xA;&#x9;Linenr,&#xA;&#x9;MachGrpCode,&#xA;&#x9;MachcodeOld,&#xA;&#x9;MachcodeNew,&#xA;&#x9;CASE WHEN MachcodeOld &lt;&gt; MachcodeNew THEN 1 ELSE 0 END AS MachcodeNeedToBeChanged,&#xA;&#x9;MachineUrenOld,&#xA;&#x9;MachineUrenNew,&#xA;&#x9;CASE WHEN MachineUrenOld &lt;&gt; MachineUrenNew THEN 1 ELSE 0 END AS MachineUrenNeedToBeChanged,&#xA;&#x9;--AVG_MachineUren,&#xA;&#x9;ManUrenOld,&#xA;&#x9;ManUrenNew,&#xA;&#x9;CASE WHEN ManUrenOld &lt;&gt; ManUrenNew THEN 1 ELSE 0 END AS ManUrenNeedToBeChanged,&#xA;&#x9;--AVG_ManUren,&#xA;&#x9;SoortUren&#xA;&#x9;FROM (&#xA;&#xA;SELECT &#xA;    ProdHeaderDossierCode,&#xA;&#x9;LineNr,&#xA;    MachGrpCode,&#xA;&#x9;CASE WHEN MachCode = '     ' THEN '' ELSE Machcode END AS MachcodeOld,&#xA;&#x9;'' AS MachcodeNew,&#xA;    QTY,&#xA;    FORMAT(CAST((MachCycleTime / 3600) as decimal(10,3)), 'N2', 'nl-NL') as [MachineUrenOld],&#xA;&#x9;CASE &#xA;        WHEN MachGrpCode IN ('GL','HA','VER','RSL','BEH') &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL') --GL,HA,VER,RSL and BEH should always be 0,00&#xA;        WHEN PlanningBasedOnType = 2 &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL') --If Type is ManHours return 0,00 as new value for MachineHours&#xA;        WHEN (MachCycleTime = 0 OR MachCycleTime IS NULL) AND OccupationCycleTime &gt; 0 AND FORMAT(CAST((ROUND((OccupationCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL') = '0,00'&#xA;&#x9;&#x9;&#x9;THEN '0,10'  --If MachineHours is empty, but ManHours is filled in and above 0, but rounded ManHours is 0, then return 0,10 &#xA;&#x9;&#x9;WHEN (MachCycleTime = 0 OR MachCycleTime IS NULL) AND OccupationCycleTime &gt; 0 &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST((ROUND((OccupationCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL')  --If MachineHours is empty, but ManHours is filled in, copy and round ManHours as new value for MachineHours&#xA;        WHEN FORMAT(CAST((ROUND((MachCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL') = '0,00' &#xA;             AND MachCycleTime &gt; 0 &#xA;&#x9;&#x9;&#x9;THEN '0,10' --If MachineHours is above 0, but rounded it returns as 0,00 then return 0,10&#xA;        WHEN MachCycleTime = 0  &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL') --If MachineHours is 0, return as 0,00 &#xA;        ELSE FORMAT(CAST((ROUND((MachCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL')&#xA;    END as [MachineUrenNew],&#xA;&#x9;    (SELECT FORMAT(CAST((AVG(MachCycleTime) / 3600) as decimal(10,3)), 'N2', 'nl-NL') &#xA;     FROM [T_ProdBillOfOper] s1&#xA;     WHERE s1.MachGrpCode = m.MachGrpCode &#xA;       AND s1.ProdBOOLineNr = m.ProdBOOLineNr &#xA;       AND s1.Qty = m.Qty &#xA;       AND s1.PlanningBasedOnType = m.PlanningBasedOnType &#xA;       AND StartDate &gt; GETDATE() -365) as [AVG_MachineUren],&#xA;    FORMAT(CAST((OccupationCycleTime / 3600) as decimal(10,3)), 'N2', 'nl-NL') as [ManUrenOld],&#xA;&#x9;CASE &#xA;        WHEN MachGrpCode IN ('GL','HA','VER','RSL','BEH') &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL') --GL,HA,VER,RSL and BEH should always be 0,00&#xA;        WHEN PlanningBasedOnType = 1 &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL') --If Type is MachineHours return 0,00 as new value for ManHours&#xA;        WHEN (OccupationCycleTime = 0 OR OccupationCycleTime IS NULL) AND MachCycleTime &gt; 0 AND FORMAT(CAST((ROUND((MachCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL') = '0,00'&#xA;&#x9;&#x9;&#x9;THEN '0,10'  --If ManHours is empty, but MachineHours is filled in and above 0, but rounded MachineHours is 0, then return 0,10 &#xA;&#x9;&#x9;WHEN (OccupationCycleTime = 0 OR OccupationCycleTime IS NULL) AND MachCycleTime &gt; 0 &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST((ROUND((MachCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL')  --If ManHours is empty, but MachineHours is filled in, copy and round MachineHours as new value for ManHours&#xA;        WHEN FORMAT(CAST((ROUND((OccupationCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL') = '0,00' &#xA;             AND OccupationCycleTime &gt; 0 &#xA;&#x9;&#x9;&#x9;THEN '0,10' --If ManHours is above 0, but rounded it returns as 0,00 then return 0,10&#xA;        WHEN OccupationCycleTime = 0  &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL') --If ManHours is 0, return as 0,00 &#xA;        ELSE FORMAT(CAST((ROUND((OccupationCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL')&#xA;    END as [ManUrenNew],&#xA;    (SELECT FORMAT(CAST((AVG(OccupationCycleTime) / 3600) as decimal(10,3)), 'N2', 'nl-NL') &#xA;     FROM [T_ProdBillOfOper] s2&#xA;     WHERE s2.MachGrpCode = m.MachGrpCode &#xA;       AND s2.ProdBOOLineNr = m.ProdBOOLineNr &#xA;       AND s2.Qty = m.Qty &#xA;       AND s2.PlanningBasedOnType = m.PlanningBasedOnType &#xA;       AND StartDate &gt; GETDATE() -365) as [AVG_ManUren],&#xA;&#xA;    PlanningBasedOnType,&#xA;    CASE &#xA;        WHEN PlanningBasedOnType = 2 THEN 'ManUren' &#xA;        WHEN PlanningBasedOnType = 1 THEN 'MachineUren' &#xA;        ELSE '' &#xA;    END AS SoortUren&#xA;    &#xA;FROM [T_ProdBillOfOper] m&#xA;&#xA;Where ProdHeaderDossierCode IN &#xA;&#x9;(SELECT h.ProdHeaderDossierCode FROM &#xA;&#x9;[T_ProductionHeader] h&#xA;&#x9;LEFT JOIN T_ProdHeadProdBOMLink PHPBL on PHPBL.Prodheaderdossiercode = h.prodheaderdossiercode &#xA;&#x9;LEFT JOIN [T_prodbillofmat] PBOM on (PBOM.prodBomLineNr = PHPBL.ProdBomLineNr AND PBOM.prodheaderdossiercode = PHPBL.ProdBOMprodheaderdossiercode)&#xA;&#x9;WHERE DOSSIERCODE = (SELECT DISTINCT DOSSIERCODE FROM [T_ProductionHeader] WITH (NOLOCK) WHERE '20' + SUBSTRING(REPLACE(DESIGNCODE, '.', ''), 1, 6) = @OrderNumber) &#xA;&#x9;AND (Select Min(ProdBOMProdHeaderDossierCode) From T_ProdHeadProdBOMLink PHPBL Where PHPBL.ProdHeaderDossierCode = h.ProdHeaderDossiercode) IS NOT NULL --Only Sub PD's&#xA;&#x9;AND h.ProdStatusCode = 15 --Filter for code 15 to exclude sub PD's that are already processed.&#xA;)&#xA;) a &#xA;) b &#xA;&#x9;GROUP BY ProdHeaderDossierCode HAVING SUM(MachcodeNeedToBeChanged) &gt; 0 OR SUM(MachineUrenNeedToBeChanged) &gt; 0 OR SUM(ManUrenNeedToBeChanged) &gt; 0 OR (SELECT SUM([BufferTimeToBeChanged]) AS [BufferTimeRowsToBeChanged] FROM&#xA;&#x9;&#x9;(SELECT CASE WHEN FORMAT(CAST((WaitTimeAfter / 3600/8) as decimal(10,3)), 'N2', 'nl-NL') &lt;&gt; '2,00' THEN 1 ELSE 0 END AS [BufferTimeToBeChanged]&#xA;&#x9;&#x9;&#x9;FROM [T_ProductionRouting] &#xA;&#x9;&#x9;&#x9;Where ProdHeaderDossierCode = b.ProdHeaderDossierCode) a) &gt; 0&quot;]">
+      <ui:ExecuteQuery.Parameters>
+        <scg:Dictionary x:TypeArguments="x:String, Argument" />
+      </ui:ExecuteQuery.Parameters>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ExecuteQuery>
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_Successful_Rows_For_Status_Change]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="488,444.6666666666667" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+      <ui:ForEachRow.Body>
+        <ActivityAction x:TypeArguments="sd:DataRow">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,260.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_11">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="True" DisplayName="10.01 Set status successful sub PDs to 30 - Invoke Workflow File (10.01 Set status successful sub PDs to 30.xaml)" sap:VirtualizedContainerService.HintSize="416,200.66666666666666" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="10.01 Set status successful sub PDs to 30.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="x:Boolean" x:Key="Testrun">[Testrun]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="OrderNr">[OrderNr]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="ProdHeaderDossierCode">[currentrow("Prodheaderdossiercode").tostring]</InArgument>
+                <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="DatabaseConnection">[DatabaseConnection]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEachRow.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ForEachRow>
+    <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[dt_Successful_Rows_With_Status_15_After_Status_Change]" DisplayName="Succesful rows not status changes after status change" ExistingDbConnection="[DatabaseConnection]" sap:VirtualizedContainerService.HintSize="488,120.66666666666667" sap2010:WorkflowViewState.IdRef="ExecuteQuery_7" Sql="[&quot;DECLARE @OrderNumber varchar(255)&#xA;SET @OrderNumber = '&quot;+OrderNr+&quot;'&#xA;&#xA;  SELECT &#xA;&#x9;ProdHeaderDossierCode,&#xA;&#x9;SUM(MachcodeNeedToBeChanged) as [MachcodeRowsToBeChanged],&#xA;&#x9;SUM(MachineUrenNeedToBeChanged) as [MachineUrenRowsToBeChanged],&#xA;&#x9;SUM(ManUrenNeedToBeChanged) as [ManUrenRowsToBeChanged],&#xA;&#x9;(SELECT SUM([BufferTimeToBeChanged]) AS [BufferTimeRowsToBeChanged] FROM&#xA;&#x9;&#x9;(SELECT CASE WHEN FORMAT(CAST((WaitTimeAfter / 3600/8) as decimal(10,3)), 'N2', 'nl-NL') &lt;&gt; '2,00' THEN 1 ELSE 0 END AS [BufferTimeToBeChanged]&#xA;&#x9;&#x9;&#x9;FROM [T_ProductionRouting] &#xA;&#x9;&#x9;&#x9;Where ProdHeaderDossierCode = b.ProdHeaderDossierCode) a) [BufferTimeRowsToBeChanged]&#xA;&#xA;FROM (&#xA;&#xA;SELECT&#xA;&#x9;ProdHeaderDossierCode,&#xA;&#x9;Linenr,&#xA;&#x9;MachGrpCode,&#xA;&#x9;MachcodeOld,&#xA;&#x9;MachcodeNew,&#xA;&#x9;CASE WHEN MachcodeOld &lt;&gt; MachcodeNew THEN 1 ELSE 0 END AS MachcodeNeedToBeChanged,&#xA;&#x9;MachineUrenOld,&#xA;&#x9;MachineUrenNew,&#xA;&#x9;CASE WHEN MachineUrenOld &lt;&gt; MachineUrenNew THEN 1 ELSE 0 END AS MachineUrenNeedToBeChanged,&#xA;&#x9;--AVG_MachineUren,&#xA;&#x9;ManUrenOld,&#xA;&#x9;ManUrenNew,&#xA;&#x9;CASE WHEN ManUrenOld &lt;&gt; ManUrenNew THEN 1 ELSE 0 END AS ManUrenNeedToBeChanged,&#xA;&#x9;--AVG_ManUren,&#xA;&#x9;SoortUren&#xA;&#x9;FROM (&#xA;&#xA;SELECT &#xA;    ProdHeaderDossierCode,&#xA;&#x9;LineNr,&#xA;    MachGrpCode,&#xA;&#x9;CASE WHEN MachCode = '     ' THEN '' ELSE Machcode END AS MachcodeOld,&#xA;&#x9;'' AS MachcodeNew,&#xA;    QTY,&#xA;    FORMAT(CAST((MachCycleTime / 3600) as decimal(10,3)), 'N2', 'nl-NL') as [MachineUrenOld],&#xA;&#x9;CASE &#xA;        WHEN MachGrpCode IN ('GL','HA','VER','RSL','BEH') &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL') --GL,HA,VER,RSL and BEH should always be 0,00&#xA;        WHEN PlanningBasedOnType = 2 &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL') --If Type is ManHours return 0,00 as new value for MachineHours&#xA;        WHEN (MachCycleTime = 0 OR MachCycleTime IS NULL) AND OccupationCycleTime &gt; 0 AND FORMAT(CAST((ROUND((OccupationCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL') = '0,00'&#xA;&#x9;&#x9;&#x9;THEN '0,10'  --If MachineHours is empty, but ManHours is filled in and above 0, but rounded ManHours is 0, then return 0,10 &#xA;&#x9;&#x9;WHEN (MachCycleTime = 0 OR MachCycleTime IS NULL) AND OccupationCycleTime &gt; 0 &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST((ROUND((OccupationCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL')  --If MachineHours is empty, but ManHours is filled in, copy and round ManHours as new value for MachineHours&#xA;        WHEN FORMAT(CAST((ROUND((MachCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL') = '0,00' &#xA;             AND MachCycleTime &gt; 0 &#xA;&#x9;&#x9;&#x9;THEN '0,10' --If MachineHours is above 0, but rounded it returns as 0,00 then return 0,10&#xA;        WHEN MachCycleTime = 0  &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL') --If MachineHours is 0, return as 0,00 &#xA;        ELSE FORMAT(CAST((ROUND((MachCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL')&#xA;    END as [MachineUrenNew],&#xA;&#x9;    (SELECT FORMAT(CAST((AVG(MachCycleTime) / 3600) as decimal(10,3)), 'N2', 'nl-NL') &#xA;     FROM [T_ProdBillOfOper] s1&#xA;     WHERE s1.MachGrpCode = m.MachGrpCode &#xA;       AND s1.ProdBOOLineNr = m.ProdBOOLineNr &#xA;       AND s1.Qty = m.Qty &#xA;       AND s1.PlanningBasedOnType = m.PlanningBasedOnType &#xA;       AND StartDate &gt; GETDATE() -365) as [AVG_MachineUren],&#xA;    FORMAT(CAST((OccupationCycleTime / 3600) as decimal(10,3)), 'N2', 'nl-NL') as [ManUrenOld],&#xA;&#x9;CASE &#xA;        WHEN MachGrpCode IN ('GL','HA','VER','RSL','BEH') &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL') --GL,HA,VER,RSL and BEH should always be 0,00&#xA;        WHEN PlanningBasedOnType = 1 &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL') --If Type is MachineHours return 0,00 as new value for ManHours&#xA;        WHEN (OccupationCycleTime = 0 OR OccupationCycleTime IS NULL) AND MachCycleTime &gt; 0 AND FORMAT(CAST((ROUND((MachCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL') = '0,00'&#xA;&#x9;&#x9;&#x9;THEN '0,10'  --If ManHours is empty, but MachineHours is filled in and above 0, but rounded MachineHours is 0, then return 0,10 &#xA;&#x9;&#x9;WHEN (OccupationCycleTime = 0 OR OccupationCycleTime IS NULL) AND MachCycleTime &gt; 0 &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST((ROUND((MachCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL')  --If ManHours is empty, but MachineHours is filled in, copy and round MachineHours as new value for ManHours&#xA;        WHEN FORMAT(CAST((ROUND((OccupationCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL') = '0,00' &#xA;             AND OccupationCycleTime &gt; 0 &#xA;&#x9;&#x9;&#x9;THEN '0,10' --If ManHours is above 0, but rounded it returns as 0,00 then return 0,10&#xA;        WHEN OccupationCycleTime = 0  &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL') --If ManHours is 0, return as 0,00 &#xA;        ELSE FORMAT(CAST((ROUND((OccupationCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL')&#xA;    END as [ManUrenNew],&#xA;    (SELECT FORMAT(CAST((AVG(OccupationCycleTime) / 3600) as decimal(10,3)), 'N2', 'nl-NL') &#xA;     FROM [T_ProdBillOfOper] s2&#xA;     WHERE s2.MachGrpCode = m.MachGrpCode &#xA;       AND s2.ProdBOOLineNr = m.ProdBOOLineNr &#xA;       AND s2.Qty = m.Qty &#xA;       AND s2.PlanningBasedOnType = m.PlanningBasedOnType &#xA;       AND StartDate &gt; GETDATE() -365) as [AVG_ManUren],&#xA;&#xA;    PlanningBasedOnType,&#xA;    CASE &#xA;        WHEN PlanningBasedOnType = 2 THEN 'ManUren' &#xA;        WHEN PlanningBasedOnType = 1 THEN 'MachineUren' &#xA;        ELSE '' &#xA;    END AS SoortUren&#xA;    &#xA;FROM [T_ProdBillOfOper] m&#xA;&#xA;Where ProdHeaderDossierCode IN &#xA;&#x9;(SELECT h.ProdHeaderDossierCode FROM &#xA;&#x9;[T_ProductionHeader] h&#xA;&#x9;LEFT JOIN T_ProdHeadProdBOMLink PHPBL on PHPBL.Prodheaderdossiercode = h.prodheaderdossiercode &#xA;&#x9;LEFT JOIN [T_prodbillofmat] PBOM on (PBOM.prodBomLineNr = PHPBL.ProdBomLineNr AND PBOM.prodheaderdossiercode = PHPBL.ProdBOMprodheaderdossiercode)&#xA;&#x9;WHERE DOSSIERCODE = (SELECT DISTINCT DOSSIERCODE FROM [T_ProductionHeader] WITH (NOLOCK) WHERE '20' + SUBSTRING(REPLACE(DESIGNCODE, '.', ''), 1, 6) = @OrderNumber) &#xA;&#x9;AND (Select Min(ProdBOMProdHeaderDossierCode) From T_ProdHeadProdBOMLink PHPBL Where PHPBL.ProdHeaderDossierCode = h.ProdHeaderDossiercode) IS NOT NULL --Only Sub PD's&#xA;&#x9;AND h.ProdStatusCode = 15 --Filter for code 15 to exclude sub PD's that are already processed.&#xA;)&#xA;) a &#xA;) b &#xA;&#x9;GROUP BY ProdHeaderDossierCode HAVING (SUM(MachcodeNeedToBeChanged) = 0 OR SUM(MachcodeNeedToBeChanged) IS NULL) AND (SUM(MachineUrenNeedToBeChanged) = 0 OR SUM(MachineUrenNeedToBeChanged) IS NULL) AND (SUM(ManUrenNeedToBeChanged) = 0 OR SUM(ManUrenNeedToBeChanged) IS NULL) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;AND (&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(SELECT SUM([BufferTimeToBeChanged]) AS [BufferTimeRowsToBeChanged] FROM&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(SELECT CASE WHEN FORMAT(CAST((WaitTimeAfter / 3600/8) as decimal(10,3)), 'N2', 'nl-NL') &lt;&gt; '2,00' THEN 1 ELSE 0 END AS [BufferTimeToBeChanged]&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;FROM [T_ProductionRouting] &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Where ProdHeaderDossierCode = b.ProdHeaderDossierCode) a) = 0 &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;OR&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(SELECT SUM([BufferTimeToBeChanged]) AS [BufferTimeRowsToBeChanged] FROM&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(SELECT CASE WHEN FORMAT(CAST((WaitTimeAfter / 3600/8) as decimal(10,3)), 'N2', 'nl-NL') &lt;&gt; '2,00' THEN 1 ELSE 0 END AS [BufferTimeToBeChanged]&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;FROM [T_ProductionRouting] &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Where ProdHeaderDossierCode = b.ProdHeaderDossierCode) a) IS NULL)&quot;]">
+      <ui:ExecuteQuery.Parameters>
+        <scg:Dictionary x:TypeArguments="x:String, Argument" />
+      </ui:ExecuteQuery.Parameters>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ExecuteQuery>
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_Successful_Rows_With_Status_15_After_Status_Change]" DisplayName="Retry failed rows" sap:VirtualizedContainerService.HintSize="488,444.6666666666667" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+      <ui:ForEachRow.Body>
+        <ActivityAction x:TypeArguments="sd:DataRow">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,260.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_16">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="True" DisplayName="10.01 Set status successful sub PDs to 30 - Invoke Workflow File (10.01 Set status successful sub PDs to 30.xaml)" sap:VirtualizedContainerService.HintSize="416,200.66666666666666" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="10.01 Set status successful sub PDs to 30.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="x:Boolean" x:Key="Testrun">[Testrun]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="OrderNr">[OrderNr]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="ProdHeaderDossierCode">[currentrow("Prodheaderdossiercode").tostring]</InArgument>
+                <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="DatabaseConnection">[DatabaseConnection]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:InvokeWorkflowFile>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEachRow.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ForEachRow>
+    <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[dt_Successful_Rows_With_Status_15_After_Status_Change]" DisplayName="Succesful rows not status changes after status change" ExistingDbConnection="[DatabaseConnection]" sap:VirtualizedContainerService.HintSize="488,120.66666666666667" sap2010:WorkflowViewState.IdRef="ExecuteQuery_10" Sql="[&quot;DECLARE @OrderNumber varchar(255)&#xA;SET @OrderNumber = '&quot;+OrderNr+&quot;'&#xA;&#xA;  SELECT &#xA;&#x9;ProdHeaderDossierCode,&#xA;&#x9;SUM(MachcodeNeedToBeChanged) as [MachcodeRowsToBeChanged],&#xA;&#x9;SUM(MachineUrenNeedToBeChanged) as [MachineUrenRowsToBeChanged],&#xA;&#x9;SUM(ManUrenNeedToBeChanged) as [ManUrenRowsToBeChanged],&#xA;&#x9;(SELECT SUM([BufferTimeToBeChanged]) AS [BufferTimeRowsToBeChanged] FROM&#xA;&#x9;&#x9;(SELECT CASE WHEN FORMAT(CAST((WaitTimeAfter / 3600/8) as decimal(10,3)), 'N2', 'nl-NL') &lt;&gt; '2,00' THEN 1 ELSE 0 END AS [BufferTimeToBeChanged]&#xA;&#x9;&#x9;&#x9;FROM [T_ProductionRouting] &#xA;&#x9;&#x9;&#x9;Where ProdHeaderDossierCode = b.ProdHeaderDossierCode) a) [BufferTimeRowsToBeChanged]&#xA;&#xA;FROM (&#xA;&#xA;SELECT&#xA;&#x9;ProdHeaderDossierCode,&#xA;&#x9;Linenr,&#xA;&#x9;MachGrpCode,&#xA;&#x9;MachcodeOld,&#xA;&#x9;MachcodeNew,&#xA;&#x9;CASE WHEN MachcodeOld &lt;&gt; MachcodeNew THEN 1 ELSE 0 END AS MachcodeNeedToBeChanged,&#xA;&#x9;MachineUrenOld,&#xA;&#x9;MachineUrenNew,&#xA;&#x9;CASE WHEN MachineUrenOld &lt;&gt; MachineUrenNew THEN 1 ELSE 0 END AS MachineUrenNeedToBeChanged,&#xA;&#x9;--AVG_MachineUren,&#xA;&#x9;ManUrenOld,&#xA;&#x9;ManUrenNew,&#xA;&#x9;CASE WHEN ManUrenOld &lt;&gt; ManUrenNew THEN 1 ELSE 0 END AS ManUrenNeedToBeChanged,&#xA;&#x9;--AVG_ManUren,&#xA;&#x9;SoortUren&#xA;&#x9;FROM (&#xA;&#xA;SELECT &#xA;    ProdHeaderDossierCode,&#xA;&#x9;LineNr,&#xA;    MachGrpCode,&#xA;&#x9;CASE WHEN MachCode = '     ' THEN '' ELSE Machcode END AS MachcodeOld,&#xA;&#x9;'' AS MachcodeNew,&#xA;    QTY,&#xA;    FORMAT(CAST((MachCycleTime / 3600) as decimal(10,3)), 'N2', 'nl-NL') as [MachineUrenOld],&#xA;&#x9;CASE &#xA;        WHEN MachGrpCode IN ('GL','HA','VER','RSL','BEH') &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL') --GL,HA,VER,RSL and BEH should always be 0,00&#xA;        WHEN PlanningBasedOnType = 2 &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL') --If Type is ManHours return 0,00 as new value for MachineHours&#xA;        WHEN (MachCycleTime = 0 OR MachCycleTime IS NULL) AND OccupationCycleTime &gt; 0 AND FORMAT(CAST((ROUND((OccupationCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL') = '0,00'&#xA;&#x9;&#x9;&#x9;THEN '0,10'  --If MachineHours is empty, but ManHours is filled in and above 0, but rounded ManHours is 0, then return 0,10 &#xA;&#x9;&#x9;WHEN (MachCycleTime = 0 OR MachCycleTime IS NULL) AND OccupationCycleTime &gt; 0 &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST((ROUND((OccupationCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL')  --If MachineHours is empty, but ManHours is filled in, copy and round ManHours as new value for MachineHours&#xA;        WHEN FORMAT(CAST((ROUND((MachCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL') = '0,00' &#xA;             AND MachCycleTime &gt; 0 &#xA;&#x9;&#x9;&#x9;THEN '0,10' --If MachineHours is above 0, but rounded it returns as 0,00 then return 0,10&#xA;        WHEN MachCycleTime = 0  &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL') --If MachineHours is 0, return as 0,00 &#xA;        ELSE FORMAT(CAST((ROUND((MachCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL')&#xA;    END as [MachineUrenNew],&#xA;&#x9;    (SELECT FORMAT(CAST((AVG(MachCycleTime) / 3600) as decimal(10,3)), 'N2', 'nl-NL') &#xA;     FROM [T_ProdBillOfOper] s1&#xA;     WHERE s1.MachGrpCode = m.MachGrpCode &#xA;       AND s1.ProdBOOLineNr = m.ProdBOOLineNr &#xA;       AND s1.Qty = m.Qty &#xA;       AND s1.PlanningBasedOnType = m.PlanningBasedOnType &#xA;       AND StartDate &gt; GETDATE() -365) as [AVG_MachineUren],&#xA;    FORMAT(CAST((OccupationCycleTime / 3600) as decimal(10,3)), 'N2', 'nl-NL') as [ManUrenOld],&#xA;&#x9;CASE &#xA;        WHEN MachGrpCode IN ('GL','HA','VER','RSL','BEH') &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL') --GL,HA,VER,RSL and BEH should always be 0,00&#xA;        WHEN PlanningBasedOnType = 1 &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL') --If Type is MachineHours return 0,00 as new value for ManHours&#xA;        WHEN (OccupationCycleTime = 0 OR OccupationCycleTime IS NULL) AND MachCycleTime &gt; 0 AND FORMAT(CAST((ROUND((MachCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL') = '0,00'&#xA;&#x9;&#x9;&#x9;THEN '0,10'  --If ManHours is empty, but MachineHours is filled in and above 0, but rounded MachineHours is 0, then return 0,10 &#xA;&#x9;&#x9;WHEN (OccupationCycleTime = 0 OR OccupationCycleTime IS NULL) AND MachCycleTime &gt; 0 &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST((ROUND((MachCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL')  --If ManHours is empty, but MachineHours is filled in, copy and round MachineHours as new value for ManHours&#xA;        WHEN FORMAT(CAST((ROUND((OccupationCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL') = '0,00' &#xA;             AND OccupationCycleTime &gt; 0 &#xA;&#x9;&#x9;&#x9;THEN '0,10' --If ManHours is above 0, but rounded it returns as 0,00 then return 0,10&#xA;        WHEN OccupationCycleTime = 0  &#xA;&#x9;&#x9;&#x9;THEN FORMAT(CAST(('0') as decimal(10,3)), 'N2', 'nl-NL') --If ManHours is 0, return as 0,00 &#xA;        ELSE FORMAT(CAST((ROUND((OccupationCycleTime / 3600) * 4,0) / 4.0) as decimal(10,3)), 'N2', 'nl-NL')&#xA;    END as [ManUrenNew],&#xA;    (SELECT FORMAT(CAST((AVG(OccupationCycleTime) / 3600) as decimal(10,3)), 'N2', 'nl-NL') &#xA;     FROM [T_ProdBillOfOper] s2&#xA;     WHERE s2.MachGrpCode = m.MachGrpCode &#xA;       AND s2.ProdBOOLineNr = m.ProdBOOLineNr &#xA;       AND s2.Qty = m.Qty &#xA;       AND s2.PlanningBasedOnType = m.PlanningBasedOnType &#xA;       AND StartDate &gt; GETDATE() -365) as [AVG_ManUren],&#xA;&#xA;    PlanningBasedOnType,&#xA;    CASE &#xA;        WHEN PlanningBasedOnType = 2 THEN 'ManUren' &#xA;        WHEN PlanningBasedOnType = 1 THEN 'MachineUren' &#xA;        ELSE '' &#xA;    END AS SoortUren&#xA;    &#xA;FROM [T_ProdBillOfOper] m&#xA;&#xA;Where ProdHeaderDossierCode IN &#xA;&#x9;(SELECT h.ProdHeaderDossierCode FROM &#xA;&#x9;[T_ProductionHeader] h&#xA;&#x9;LEFT JOIN T_ProdHeadProdBOMLink PHPBL on PHPBL.Prodheaderdossiercode = h.prodheaderdossiercode &#xA;&#x9;LEFT JOIN [T_prodbillofmat] PBOM on (PBOM.prodBomLineNr = PHPBL.ProdBomLineNr AND PBOM.prodheaderdossiercode = PHPBL.ProdBOMprodheaderdossiercode)&#xA;&#x9;WHERE DOSSIERCODE = (SELECT DISTINCT DOSSIERCODE FROM [T_ProductionHeader] WITH (NOLOCK) WHERE '20' + SUBSTRING(REPLACE(DESIGNCODE, '.', ''), 1, 6) = @OrderNumber) &#xA;&#x9;AND (Select Min(ProdBOMProdHeaderDossierCode) From T_ProdHeadProdBOMLink PHPBL Where PHPBL.ProdHeaderDossierCode = h.ProdHeaderDossiercode) IS NOT NULL --Only Sub PD's&#xA;&#x9;AND h.ProdStatusCode = 15 --Filter for code 15 to exclude sub PD's that are already processed.&#xA;)&#xA;) a &#xA;) b &#xA;&#x9;GROUP BY ProdHeaderDossierCode HAVING (SUM(MachcodeNeedToBeChanged) = 0 OR SUM(MachcodeNeedToBeChanged) IS NULL) AND (SUM(MachineUrenNeedToBeChanged) = 0 OR SUM(MachineUrenNeedToBeChanged) IS NULL) AND (SUM(ManUrenNeedToBeChanged) = 0 OR SUM(ManUrenNeedToBeChanged) IS NULL) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;AND (&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(SELECT SUM([BufferTimeToBeChanged]) AS [BufferTimeRowsToBeChanged] FROM&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(SELECT CASE WHEN FORMAT(CAST((WaitTimeAfter / 3600/8) as decimal(10,3)), 'N2', 'nl-NL') &lt;&gt; '2,00' THEN 1 ELSE 0 END AS [BufferTimeToBeChanged]&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;FROM [T_ProductionRouting] &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Where ProdHeaderDossierCode = b.ProdHeaderDossierCode) a) = 0 &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;OR&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(SELECT SUM([BufferTimeToBeChanged]) AS [BufferTimeRowsToBeChanged] FROM&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(SELECT CASE WHEN FORMAT(CAST((WaitTimeAfter / 3600/8) as decimal(10,3)), 'N2', 'nl-NL') &lt;&gt; '2,00' THEN 1 ELSE 0 END AS [BufferTimeToBeChanged]&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;FROM [T_ProductionRouting] &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Where ProdHeaderDossierCode = b.ProdHeaderDossierCode) a) IS NULL)&quot;]">
+      <ui:ExecuteQuery.Parameters>
+        <scg:Dictionary x:TypeArguments="x:String, Argument" />
+      </ui:ExecuteQuery.Parameters>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ExecuteQuery>
+    <Assign DisplayName="Assign html code table for results in email" sap:VirtualizedContainerService.HintSize="488,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[ResultsTable]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String" xml:space="preserve">["&lt;table border='1'&gt;" +
+"&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Automatisering Flow&lt;/th&gt;&lt;th&gt;Resultaat&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;" +
+"&lt;tbody&gt;" +
+"&lt;tr&gt;&lt;td&gt;Externe regels corrigeren met Dummy's&lt;/td&gt;&lt;td style='color: " + If(CHECK_EXTERNAL_FLOW_SUCCESS = 1, "green", If(CHECK_EXTERNAL_FLOW_SUCCESS = 2, "red", "green")) + ";'&gt;" + If(CHECK_EXTERNAL_FLOW_SUCCESS = 1, "Gelukt", If(CHECK_EXTERNAL_FLOW_SUCCESS = 2, "Mislukt", "Geen wijzigingen nodig")) + "&lt;/td&gt;&lt;/tr&gt;" +
+"&lt;tr&gt;&lt;td&gt;Engineering regels koppelen&lt;/td&gt;&lt;td style='color: " + If(ENG_LINES_FLOW_SUCCESS = 1, "green", If(ENG_LINES_FLOW_SUCCESS = 2, "red", "green")) + ";'&gt;" + If(ENG_LINES_FLOW_SUCCESS = 1, "Gelukt", If(ENG_LINES_FLOW_SUCCESS = 2, "Mislukt", "Geen wijzigingen nodig")) + "&lt;/td&gt;&lt;/tr&gt;" +
+"&lt;tr&gt;&lt;td&gt;Aantallen in regels corrigeren&lt;/td&gt;&lt;td style='color: " + If(QTY_LINES_FLOW_SUCCESS = 1, "green", If(QTY_LINES_FLOW_SUCCESS = 2, "red", "green")) + ";'&gt;" + If(QTY_LINES_FLOW_SUCCESS = 1, "Gelukt", If(QTY_LINES_FLOW_SUCCESS = 2, "Mislukt", "Geen wijzigingen nodig")) + "&lt;/td&gt;&lt;/tr&gt;" +
+"&lt;tr&gt;&lt;td&gt;Plangegevens aanpassen&lt;/td&gt;&lt;td style='color: " + If(CHANGE_PLAN_DATA_FLOW_SUCCESS = 1, "green", If(CHANGE_PLAN_DATA_FLOW_SUCCESS = 2, "red", "green")) + ";'&gt;" + If(CHANGE_PLAN_DATA_FLOW_SUCCESS = 1, "Gelukt", If(CHANGE_PLAN_DATA_FLOW_SUCCESS = 2, "Mislukt", "Geen wijzigingen nodig")) + "&lt;/td&gt;&lt;/tr&gt;" +
+"&lt;tr&gt;&lt;td&gt;Doorlooptijdenplanning uitvoeren&lt;/td&gt;&lt;td style='color: " + If(PERFORM_LEAD_TIME_PLANNING_FLOW_SUCCESS = 1, "green", If(PERFORM_LEAD_TIME_PLANNING_FLOW_SUCCESS = 2, "red", "green")) + ";'&gt;" + If(PERFORM_LEAD_TIME_PLANNING_FLOW_SUCCESS = 1, "Gelukt", If(PERFORM_LEAD_TIME_PLANNING_FLOW_SUCCESS = 2, "Mislukt", "Geen wijzigingen nodig")) + "&lt;/td&gt;&lt;/tr&gt;" +
+"&lt;tr&gt;&lt;td&gt;Machine velden leegmaken&lt;/td&gt;&lt;td style='color:" + If(MachcodeRowsToBeChanged = False, "green", If(CORRECT_MACH_AND_MAN_HOURS_AND_BUFFERTIMES_FLOW_SUCCESS = 1, If(MachcodeRowsNotChanged = True And EmailSendForMachCodeFailure = True, "orange", "green"), If(CORRECT_MACH_AND_MAN_HOURS_AND_BUFFERTIMES_FLOW_SUCCESS = 2, "red", "green"))) + ";'&gt;" + If(MachcodeRowsToBeChanged = False, "Geen wijzigingen nodig", If(CORRECT_MACH_AND_MAN_HOURS_AND_BUFFERTIMES_FLOW_SUCCESS = 1, If(MachcodeRowsNotChanged = True And EmailSendForMachCodeFailure = True, "Gelukt met uitzonderingen. &lt;br&gt;(Details in aparte mail.)", "Gelukt"), If(CORRECT_MACH_AND_MAN_HOURS_AND_BUFFERTIMES_FLOW_SUCCESS = 2, "Mislukt", "Geen wijzigingen nodig"))) + "&lt;/td&gt;&lt;/tr&gt;" +
+"&lt;tr&gt;&lt;td&gt;Machine Uren corrigeren&lt;/td&gt;&lt;td style='color: " + If(MachineUrenRowsToBeChanged = False, "green", If(CORRECT_MACH_AND_MAN_HOURS_AND_BUFFERTIMES_FLOW_SUCCESS = 1, If(MachineUrenRowsNotChanged = True And EmailSendForMachineUrenFailure = True, "orange", "green"), If(CORRECT_MACH_AND_MAN_HOURS_AND_BUFFERTIMES_FLOW_SUCCESS = 2, "red", "green"))) + ";'&gt;" + If(MachineUrenRowsToBeChanged = False, "Geen wijzigingen nodig", If(CORRECT_MACH_AND_MAN_HOURS_AND_BUFFERTIMES_FLOW_SUCCESS = 1, If(MachineUrenRowsNotChanged = True And EmailSendForMachineUrenFailure = True, "Gelukt met uitzonderingen. &lt;br&gt;(Details in aparte mail.)", "Gelukt"), If(CORRECT_MACH_AND_MAN_HOURS_AND_BUFFERTIMES_FLOW_SUCCESS = 2, "Mislukt", "Geen wijzigingen nodig"))) + "&lt;/td&gt;&lt;/tr&gt;" +
+"&lt;tr&gt;&lt;td&gt;Man Uren corrigeren&lt;/td&gt;&lt;td style='color: " + If(ManUrenRowsToBeChanged = False, "green", If(CORRECT_MACH_AND_MAN_HOURS_AND_BUFFERTIMES_FLOW_SUCCESS = 1, If(ManUrenRowsNotChanged = True And EmailSendForManurenFailure = True, "orange", "green"), If(CORRECT_MACH_AND_MAN_HOURS_AND_BUFFERTIMES_FLOW_SUCCESS = 2, "red", "green"))) + ";'&gt;" + If(ManUrenRowsToBeChanged = False, "Geen wijzigingen nodig", If(CORRECT_MACH_AND_MAN_HOURS_AND_BUFFERTIMES_FLOW_SUCCESS = 1, If(ManUrenRowsNotChanged = True And EmailSendForManurenFailure = True, "Gelukt met uitzonderingen. &lt;br&gt;(Details in aparte mail.)", "Gelukt"), If(CORRECT_MACH_AND_MAN_HOURS_AND_BUFFERTIMES_FLOW_SUCCESS = 2, "Mislukt", "Geen wijzigingen nodig"))) + "&lt;/td&gt;&lt;/tr&gt;" +
+"&lt;tr&gt;&lt;td&gt;Buffertijden goedzetten&lt;/td&gt;&lt;td style='color: " + If(BufferTimeRowsToBeChanged = False, "green", If(CORRECT_MACH_AND_MAN_HOURS_AND_BUFFERTIMES_FLOW_SUCCESS = 1, If(BuffertimeRowsNotChanged = True And EmailSendForBuffertimeFailure = True, "orange", "green"), If(CORRECT_MACH_AND_MAN_HOURS_AND_BUFFERTIMES_FLOW_SUCCESS = 2, "red", "green"))) + ";'&gt;" + If(BufferTimeRowsToBeChanged = False, "Geen wijzigingen nodig", If(CORRECT_MACH_AND_MAN_HOURS_AND_BUFFERTIMES_FLOW_SUCCESS = 1, If(BuffertimeRowsNotChanged = True And EmailSendForBuffertimeFailure = True, "Gelukt met uitzonderingen. &lt;br&gt;(Details in aparte mail.)", "Gelukt"), If(CORRECT_MACH_AND_MAN_HOURS_AND_BUFFERTIMES_FLOW_SUCCESS = 2, "Mislukt", "Geen wijzigingen nodig"))) + "&lt;/td&gt;&lt;/tr&gt;" +
+"&lt;tr&gt;&lt;td&gt;Status wijzigen naar 30&lt;/td&gt;&lt;td style='color: " + If(dt_Successful_Rows_For_Status_Change.rowcount = 0, "green", If(dt_Successful_Rows_With_Status_15_After_Status_Change.rowcount = 0, "green", If(dt_Successful_Rows_For_Status_Change.rowcount = dt_Successful_Rows_With_Status_15_After_Status_Change.rowcount, "red", "orange"))) + ";'&gt;" + If(dt_Successful_Rows_For_Status_Change.rowcount = 0, "Geen wijzigingen nodig", If(dt_Successful_Rows_With_Status_15_After_Status_Change.rowcount = 0, "Gelukt", If(dt_Successful_Rows_For_Status_Change.rowcount = dt_Successful_Rows_With_Status_15_After_Status_Change.rowcount, "Mislukt", "Status gewijzigd voor " &amp; dt_Successful_Rows_With_Status_15_After_Status_Change.rowcount &amp; " van " &amp; dt_Successful_Rows_For_Status_Change.rowcount &amp; " (totaal)"))) + "&lt;/td&gt;&lt;/tr&gt;" +
+"&lt;/tbody&gt;" +
+"&lt;/table&gt;" +
+"&lt;p&gt;&lt;/p&gt;" +
+If(dt_Unsuccessful_Rows_For_Status_Change.rowcount &gt; 0, "&lt;p style='color: orange;'&gt;" &amp; dt_Unsuccessful_Rows_For_Status_Change.rowcount &amp; " Productiedossiers konden niet van status worden veranderd omdat deze nog niet volledig zijn verwerkt.&lt;/p&gt;", "")]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[dt_rows_without_next_changes]" DisplayName="Check rows without next bewerkingen. " ExistingDbConnection="[DatabaseConnection]" sap:VirtualizedContainerService.HintSize="488,120.66666666666667" sap2010:WorkflowViewState.IdRef="ExecuteQuery_8" Sql="[&quot;DECLARE @OrderNumber varchar(255)&#xA;SET @OrderNumber = '&quot;+OrderNr+&quot;';&#xA;&#xA;  WITH MaxLineNr AS (&#xA;    SELECT &#xA;        Prodheaderdossiercode,&#xA;        MAX(LineNr) AS MaxLineNr&#xA;    FROM [T_ProdBillOfOper] &#xA;    WHERE Prodheaderdossiercode IN &#xA;&#x9;(SELECT prodheaderdossiercode FROM [T_ProductionHeader] h WHERE DOSSIERCODE = (SELECT DISTINCT DOSSIERCODE FROM [T_ProductionHeader] WITH (NOLOCK) WHERE '20' + SUBSTRING(REPLACE(DESIGNCODE, '.', ''), 1, 6) = @OrderNumber) -- Filter op specifieke dossiercodes&#xA;&#x9;AND (Select Min(ProdBOMProdHeaderDossierCode) From T_ProdHeadProdBOMLink PHPBL Where PHPBL.ProdHeaderDossierCode = h.ProdHeaderDossiercode) IS NOT NULL --Only Sub PD's&#xA;&#x9;)  &#xA;    &#xA;&#x9;GROUP BY Prodheaderdossiercode&#xA;)&#xA;SELECT &#xA;    pbo.Prodheaderdossiercode,&#xA;&#x9;h.Description,&#xA;    pbo.linenr,&#xA;    pbo.MachGrpCode,&#xA;    pbo.ProdBOOlinenr, &#xA;    pr.ToBOOLineNr, &#xA;    pbo2.LineNr, &#xA;    pbo2.MachGrpCode&#xA;FROM [T_ProdBillOfOper] pbo&#xA;LEFT JOIN T_ProductionRouting pr &#xA;    ON pr.ProdHeaderDossierCode = pbo.ProdHeaderDossierCode &#xA;    AND pr.ProdBOOLineNr = pbo.ProdBOOLineNr&#xA;LEFT JOIN T_ProdBillOfOper pbo2 &#xA;    ON pr.ProdHeaderDossierCode = pbo2.ProdHeaderDossierCode &#xA;    AND pr.ToBOOLineNr = pbo2.ProdBOOLineNr&#xA;LEFT JOIN MaxLineNr ml &#xA;    ON pbo.Prodheaderdossiercode = ml.Prodheaderdossiercode&#xA;LEFT JOIN [T_ProductionHeader] h on h.ProdHeaderDossierCode = pbo.ProdHeaderDossierCode&#xA;WHERE &#xA;    pbo.Prodheaderdossiercode IN &#xA;&#x9;(SELECT prodheaderdossiercode FROM [T_ProductionHeader] h WHERE DOSSIERCODE = (SELECT DISTINCT DOSSIERCODE FROM [T_ProductionHeader] WITH (NOLOCK) WHERE '20' + SUBSTRING(REPLACE(DESIGNCODE, '.', ''), 1, 6) = @OrderNumber) -- Filter op specifieke dossiercodes&#xA;&#x9;AND (Select Min(ProdBOMProdHeaderDossierCode) From T_ProdHeadProdBOMLink PHPBL Where PHPBL.ProdHeaderDossierCode = h.ProdHeaderDossiercode) IS NOT NULL --Only Sub PD's&#xA;&#x9;)&#xA;&#x9;AND pr.ToBOOLineNr IS NULL -- Geen volgende bewerking&#xA;    AND pbo.LineNr &lt;&gt; ml.MaxLineNr -- Sluit de grootste LineNr uit&#xA;&#x9;AND pbo.MachGrpCode NOT IN ('VO')&#xA;ORDER BY pbo.Prodheaderdossiercode, pbo.linenr;&quot;]">
+      <ui:ExecuteQuery.Parameters>
+        <scg:Dictionary x:TypeArguments="x:String, Argument" />
+      </ui:ExecuteQuery.Parameters>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ExecuteQuery>
+    <ui:LogMessage DisplayName="log rowcount without next bewerkingen." sap:VirtualizedContainerService.HintSize="488,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[dt_rows_without_next_changes.rowcount.tostring + &quot; rijen zonder volgende bewerking&quot;]" />
+    <If Condition="[dt_rows_without_next_changes.rowcount &gt; 0]" sap:VirtualizedContainerService.HintSize="488,1046" sap2010:WorkflowViewState.IdRef="If_7">
+      <If.Then>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="486,815.3333333333334" sap2010:WorkflowViewState.IdRef="Sequence_17">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign DisplayName="set message and begin of table for no next changes results in email" sap:VirtualizedContainerService.HintSize="452,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_13">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[ResultsTable]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String" xml:space="preserve">[ResultsTable +
+"&lt;p&gt;&lt;/p&gt;" +
+"&lt;p style='color: orange;'&gt;" + dt_rows_without_next_changes.rowcount.tostring + " Bewerkingsstappen in deze order hebben geen volgende bewerking. &lt;br&gt; In de tabel hieronder staat welke bewerkingen dit zijn: &lt;/p&gt;" +
+	"&lt;p&gt;&lt;/p&gt;" +
+	"&lt;table border='1'&gt;" +
+"&lt;thead&gt;&lt;tr&gt;&lt;th&gt;ProductieDossiercode&lt;/th&gt;&lt;th&gt;Omschrijving&lt;/th&gt;&lt;th&gt;Regel&lt;/th&gt;&lt;th&gt;Bewerking&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;" +
+"&lt;tbody&gt;"]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_rows_without_next_changes]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="452,411.3333333333333" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
+            <ui:ForEachRow.Body>
+              <ActivityAction x:TypeArguments="sd:DataRow">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,227.33333333333334" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign DisplayName="add info row for no next changes results in email" sap:VirtualizedContainerService.HintSize="416,167.33333333333334" sap2010:WorkflowViewState.IdRef="Assign_14">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[ResultsTable]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String" xml:space="preserve">[ResultsTable +
+"&lt;tr&gt;&lt;td&gt;"+CurrentRow("Prodheaderdossiercode").tostring+"&lt;/td&gt;&lt;td&gt;"+CurrentRow("Description").tostring+"&lt;/td&gt;&lt;td&gt;"+CurrentRow("linenr").tostring+"&lt;/td&gt;&lt;td&gt;"+CurrentRow("MachGrpCode").tostring+"&lt;/td&gt;&lt;/tr&gt;"]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </ActivityAction>
+            </ui:ForEachRow.Body>
+          </ui:ForEachRow>
+          <Assign DisplayName="add end of table for no next changes results in email" sap:VirtualizedContainerService.HintSize="452,167.33333333333334" sap2010:WorkflowViewState.IdRef="Assign_15">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[ResultsTable]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String" xml:space="preserve">[ResultsTable +
+"&lt;/tbody&gt;" +
+"&lt;/table&gt;" +
+"&lt;p&gt;&lt;/p&gt;"]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="486,90.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_18">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Else>
+    </If>
+    <If Condition="[(CHECK_EXTERNAL_FLOW_SUCCESS = 0) And (ENG_LINES_FLOW_SUCCESS = 0) And (QTY_LINES_FLOW_SUCCESS = 0) And (CHANGE_PLAN_DATA_FLOW_SUCCESS = 0) And (PERFORM_LEAD_TIME_PLANNING_FLOW_SUCCESS = 0) And (Not MachcodeRowsToBeChanged) And (Not MachineUrenRowsToBeChanged) And (Not ManUrenRowsToBeChanged) And (Not BufferTimeRowsToBeChanged) And (dt_Successful_Rows_For_Status_Change.rowcount = 0) And (dt_Unsuccessful_Rows_For_Status_Change.rowcount = 0) and (dt_rows_without_next_changes.rowcount = 0)]" DisplayName="If all rows no change needed, then send email all data already correct" sap:VirtualizedContainerService.HintSize="488,652" sap2010:WorkflowViewState.IdRef="If_5">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="452.6666666666667,260.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_12">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Send Email Sequence - Invoke Workflow File (Send Email Sequence.xaml)" sap:VirtualizedContainerService.HintSize="418.6666666666667,200.66666666666666" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Send Email Sequence.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="CC" />
+              <InArgument x:TypeArguments="x:String" x:Key="EmailSubject">["Grove werkvoorbereiding niet nodig voor order " + OrderNr]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Message1">["Je vroeg me om grof werkvoorbereiding te doen voor order " + OrderNr + if(testrun = true," in de testomgeving.",".")]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Message2">Het lijkt er alleen op dat alles voor deze order al goed staat. 😉 &lt;br&gt;Laat maar weten als ik toch iets over het hoofd heb gezien!</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="BCC" />
+              <InArgument x:TypeArguments="x:String" x:Key="ResultsTable" />
+              <InArgument x:TypeArguments="x:String" x:Key="ExceptionScreenshot" />
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="452.6666666666667,260.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_13">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Send Result email" sap:VirtualizedContainerService.HintSize="418.6666666666667,200.66666666666666" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Send Email Sequence.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="CC" />
+              <InArgument x:TypeArguments="x:String" x:Key="EmailSubject">["Resultaten grove werkvoorbereiding order "+OrderNr]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Message1">["Ik ben klaar met de grove werkvoorbereiding voor order " + OrderNr + if(testrun = true," in de testomgeving.",".")]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Message2">Hieronder een overzicht van de resultaten:</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="BCC" />
+              <InArgument x:TypeArguments="x:String" x:Key="ResultsTable">[ResultsTable]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="ExceptionScreenshot" />
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+        </Sequence>
+      </If.Else>
+    </If>
+  </Sequence>
+</Activity>
